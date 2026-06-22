@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDEM Leadership Practice Inventory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#faf8f5;--fg:#1a1825;--fg-soft:#3a3850;--muted:#6b6880;--muted-light:#9b98ad;
+  --border:rgba(26,24,37,0.08);--border-strong:rgba(26,24,37,0.15);
+  --card:rgba(255,255,255,0.75);--card-elev:rgba(255,255,255,0.92);--card-solid:#ffffff;
+  --purple:#7c3aed;--purple-soft:rgba(124,58,237,0.07);--purple-border:rgba(124,58,237,0.2);--purple-dark:#6d28d9;
+  --teal:#0d9488;--teal-soft:rgba(13,148,136,0.07);--teal-border:rgba(13,148,136,0.22);--teal-hover:rgba(13,148,136,0.13);--teal-dark:#0f766e;
+  --orange:#ea580c;--orange-soft:rgba(234,88,12,0.07);--orange-border:rgba(234,88,12,0.2);
+  --green:#16a34a;--green-soft:rgba(22,163,74,0.08);--green-border:rgba(22,163,74,0.22);
+  --red:#dc2626;--blue:#2563eb;
+}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:'Inter',-apple-system,sans-serif;line-height:1.6;min-height:100vh;overflow-x:hidden}
+.grid-base{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.45;background-image:linear-gradient(to right,rgba(26,24,37,0.08) 1px,transparent 1px),linear-gradient(to bottom,rgba(26,24,37,0.08) 1px,transparent 1px);background-size:40px 40px;animation:gs 4s linear infinite}
+.grid-spot{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.8;background-image:linear-gradient(to right,rgba(124,58,237,0.18) 1px,transparent 1px),linear-gradient(to bottom,rgba(124,58,237,0.18) 1px,transparent 1px);background-size:40px 40px;animation:gs 4s linear infinite;-webkit-mask-image:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),black,transparent);mask-image:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),black,transparent)}
+.grid-spot.teal{background-image:linear-gradient(to right,rgba(13,148,136,0.18) 1px,transparent 1px),linear-gradient(to bottom,rgba(13,148,136,0.18) 1px,transparent 1px)}
+@keyframes gs{from{background-position:0 0}to{background-position:40px 40px}}
+.orb-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(120px)}
+.orb-1{right:-20%;top:-20%;width:50%;height:50%;background:rgba(249,115,22,0.15)}
+.orb-2{right:5%;top:-10%;width:25%;height:25%;background:rgba(124,58,237,0.18)}
+.orb-3{left:-15%;bottom:-25%;width:50%;height:50%;background:rgba(37,99,235,0.12)}
+.orb-4{left:30%;top:60%;width:30%;height:30%;background:rgba(236,72,153,0.08)}
+.view{position:relative;z-index:10;display:none}.view.active{display:block}
+.wrap{max-width:920px;margin:0 auto;padding:0 2rem}.wrap-sm{max-width:680px;margin:0 auto;padding:0 1.5rem}
+.ab{position:sticky;top:0;z-index:50;background:rgba(250,248,245,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.ab-brand{display:flex;flex-direction:column;gap:0.1rem}
+.ab-org{font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.18em;font-weight:600}
+.ab-org.purple{color:var(--purple)}.ab-org.teal{color:var(--teal)}
+.ab-title{font-size:0.88rem;font-weight:600;color:var(--fg)}
+.ab-right{display:flex;align-items:center;gap:0.75rem}
+.prog-wrap{position:sticky;top:56px;z-index:40;background:rgba(250,248,245,0.9);backdrop-filter:blur(8px);padding:0.45rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1rem}
+.prog-track{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;transition:width 0.4s ease}
+.prog-fill.teal{background:var(--teal)}.prog-fill.purple{background:var(--purple)}
+.prog-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.08em;white-space:nowrap;font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:0.4rem;padding:0.28rem 0.7rem;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap}
+.badge .dot{width:5px;height:5px;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+.badge.teal{background:var(--teal-soft);border:1px solid var(--teal-border);color:var(--teal)}.badge.teal .dot{background:var(--teal);box-shadow:0 0 6px rgba(13,148,136,0.7)}
+.badge.purple{background:var(--purple-soft);border:1px solid var(--purple-border);color:var(--purple)}.badge.purple .dot{background:var(--purple);box-shadow:0 0 6px rgba(124,58,237,0.7)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.card{background:var(--card);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:14px;padding:2rem 2.25rem;box-shadow:0 4px 24px rgba(26,24,37,0.04);position:relative;overflow:hidden}
+.card-accent::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--purple),var(--orange),transparent)}
+.card-accent-teal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--teal),var(--purple),transparent)}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;margin-bottom:0.6rem}
+.sec-label.teal{color:var(--teal)}.sec-label.purple{color:var(--purple)}.sec-label.orange{color:var(--orange)}
+.h1{font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(2.2rem,5vw,3.2rem);font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:var(--fg)}
+.h2{font-family:'Libre Baskerville',Georgia,serif;font-size:1.5rem;font-weight:700;color:var(--fg);letter-spacing:-0.01em;line-height:1.2}
+.h3{font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;color:var(--fg);letter-spacing:-0.01em}
+.body{font-size:0.95rem;color:var(--fg-soft);line-height:1.7}.body-sm{font-size:0.88rem;color:var(--fg-soft);line-height:1.65}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:0.4rem;padding:0.6rem 1.4rem;border-radius:7px;font-family:inherit;font-size:0.88rem;font-weight:600;cursor:pointer;border:none;transition:all 0.18s;white-space:nowrap}
+.btn-primary{background:var(--purple);color:white;box-shadow:0 2px 10px rgba(124,58,237,0.25)}
+.btn-primary:hover:not(:disabled){background:var(--purple-dark);box-shadow:0 4px 16px rgba(124,58,237,0.35);transform:translateY(-1px)}
+.btn-teal{background:var(--teal);color:white;box-shadow:0 2px 10px rgba(13,148,136,0.25)}
+.btn-teal:hover:not(:disabled){background:var(--teal-dark);box-shadow:0 4px 16px rgba(13,148,136,0.35);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-ghost:hover:not(:disabled){background:rgba(255,255,255,0.7);color:var(--fg)}
+.btn-sm{padding:0.45rem 1rem;font-size:0.82rem}.btn:disabled{opacity:0.45;cursor:not-allowed;transform:none!important}
+input[type=text],input[type=email],input[type=password],textarea,select{width:100%;padding:0.65rem 1rem;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:0.9rem;color:var(--fg);background:rgba(255,255,255,0.85);outline:none;transition:border-color 0.2s,box-shadow 0.2s}
+input:focus,textarea:focus{border-color:var(--purple-border);box-shadow:0 0 0 3px var(--purple-soft)}
+input.tf:focus,textarea.tf:focus{border-color:var(--teal-border);box-shadow:0 0 0 3px var(--teal-soft)}
+textarea{resize:vertical;line-height:1.6}
+.def-block{background:var(--teal-soft);border:1px solid var(--teal-border);border-left:3px solid var(--teal);border-radius:10px;padding:1.25rem 1.5rem;margin:1.25rem 0}
+.def-block blockquote{font-family:'Libre Baskerville',Georgia,serif;font-size:0.93rem;line-height:1.82;color:var(--fg-soft);font-style:italic}
+.def-label{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;margin-bottom:0.75rem}
+.callout{border-radius:8px;padding:1rem 1.1rem;margin-bottom:1rem}
+.callout-purple{background:var(--purple-soft);border:1px solid var(--purple-border);border-left:3px solid var(--purple)}
+.callout-teal{background:var(--teal-soft);border:1px solid var(--teal-border);border-left:3px solid var(--teal)}
+.callout-orange{background:var(--orange-soft);border:1px solid var(--orange-border);border-left:3px solid var(--orange)}
+.callout-green{background:var(--green-soft);border:1px solid var(--green-border);border-left:3px solid var(--green)}
+.clbl{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;font-weight:600;margin-bottom:0.35rem}
+.clbl.purple{color:var(--purple)}.clbl.teal{color:var(--teal)}.clbl.orange{color:var(--orange)}.clbl.green{color:var(--green)}
+.terms-item{display:flex;gap:0.85rem;padding:0.85rem 0;border-bottom:1px solid var(--border)}
+.terms-item:last-child{border-bottom:none}
+.ti-arrow{font-weight:700;font-size:1.1rem;margin-top:0.05rem;flex-shrink:0}
+.ti-arrow.teal{color:var(--teal)}.ti-arrow.purple{color:var(--purple)}
+.ti-title{font-size:0.9rem;font-weight:600;color:var(--fg);margin-bottom:0.2rem}
+.ti-body{font-size:0.85rem;color:var(--muted);line-height:1.6}
+.agree-row{display:flex;align-items:flex-start;gap:0.75rem;margin-top:1.5rem;padding:1rem 1.1rem;background:rgba(255,255,255,0.6);border:1px solid var(--border);border-radius:8px;cursor:pointer}
+.agree-row input[type=checkbox]{margin-top:0.15rem;width:16px;height:16px;flex-shrink:0;cursor:pointer}
+.agree-label{font-size:0.9rem;color:var(--fg);line-height:1.55;cursor:pointer}
+.scale-legend{display:flex;gap:0;margin-bottom:1.25rem;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.sli{flex:1;text-align:center;padding:0.45rem 0.25rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;border-right:1px solid var(--border);background:rgba(255,255,255,0.5);color:var(--muted)}
+.sli:last-child{border-right:none}
+.item-block{border:1px solid var(--border);border-radius:10px;margin-bottom:0.75rem;overflow:hidden;transition:border-color 0.2s}
+.item-block.rt{border-color:var(--teal-border)}.item-block.rp{border-color:var(--purple-border)}
+.itr{padding:0.9rem 1.1rem 0.75rem;font-size:0.93rem;color:var(--fg);line-height:1.55}
+.iid{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted-light);margin-right:0.45rem;font-weight:500}
+.inote{padding:0.5rem 1.1rem 0;font-size:0.8rem;color:var(--muted);line-height:1.55;font-style:italic}
+.sbg{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--border)}
+.sb{padding:0.65rem 0.25rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:inherit;border-right:1px solid var(--border);transition:background 0.15s;display:flex;flex-direction:column;align-items:center;gap:0.2rem}
+.sb:last-child{border-right:none}
+.sb-lbl{font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);transition:color 0.15s}
+.sb-dot{width:7px;height:7px;border-radius:50%;border:1px solid var(--border);background:transparent;transition:all 0.15s}
+.sb.st{background:var(--teal)}.sb.st .sb-lbl{color:white}.sb.st .sb-dot{background:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.5)}
+.sb.ht:hover:not(.st){background:var(--teal-hover)}.sb.ht:hover:not(.st) .sb-lbl{color:var(--teal)}.sb.ht:hover:not(.st) .sb-dot{border-color:var(--teal);background:var(--teal-soft)}
+.sb.sp{background:var(--purple)}.sb.sp .sb-lbl{color:white}.sb.sp .sb-dot{background:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.5)}
+.sb.hp:hover:not(.sp){background:var(--purple-soft)}.sb.hp:hover:not(.sp) .sb-lbl{color:var(--purple)}.sb.hp:hover:not(.sp) .sb-dot{border-color:var(--purple);background:var(--purple-soft)}
+.sdr{padding:0.6rem 1.1rem;border-top:1px solid var(--teal-border);font-size:0.82rem;color:var(--teal);line-height:1.5;font-style:italic;display:none}
+.sdr.pd{border-top-color:var(--purple-border);color:var(--purple)}
+.item-block.rt .sdr,.item-block.rp .sdr{display:block}
+.ddots{display:flex;justify-content:center;gap:0.5rem;margin-bottom:2rem}
+.dd{width:8px;height:8px;border-radius:50%;background:var(--border);border:1px solid var(--border-strong);cursor:pointer;transition:all 0.2s}
+.dd.dt{background:var(--teal);border-color:var(--teal)}.dd.at{background:var(--teal);border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,148,136,0.2);transform:scale(1.2)}
+.dd.dp{background:var(--purple);border-color:var(--purple)}.dd.ap{background:var(--purple);border-color:var(--purple);box-shadow:0 0 0 3px rgba(124,58,237,0.2);transform:scale(1.2)}
+.oqb{margin-bottom:2rem}
+.oql{display:block;font-size:0.95rem;font-weight:600;color:var(--fg);margin-bottom:0.4rem;line-height:1.5}
+.oqs{font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem;line-height:1.6}
+.ch{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted-light);margin-top:0.35rem;text-align:right;letter-spacing:0.04em;transition:color 0.2s}
+.ch.ok{color:var(--green)}
+.dn{display:none;margin-top:0.5rem;padding:0.65rem 0.9rem;background:var(--orange-soft);border:1px solid var(--orange-border);border-left:3px solid var(--orange);border-radius:7px;font-size:0.82rem;color:var(--fg-soft);line-height:1.55}
+.nav-row{display:flex;align-items:center;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap}
+.spacer{flex:1}
+.ti-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.6rem}
+.snum{font-family:'JetBrains Mono',monospace;font-size:0.7rem;padding:0.35rem 0.75rem;border-radius:4px;letter-spacing:0.1em;font-weight:600;white-space:nowrap}
+.snum.teal{color:var(--teal);background:var(--teal-soft);border:1px solid var(--teal-border)}
+.snum.purple{color:var(--purple);background:var(--purple-soft);border:1px solid var(--purple-border)}
+.admin-layout{display:flex;min-height:calc(100vh - 60px)}
+.admin-sidebar{width:260px;background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);border-right:1px solid var(--border);padding:1.25rem;display:flex;flex-direction:column;flex-shrink:0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
+.admin-main{flex:1;padding:1.75rem;overflow:auto}
+.slbl{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;font-weight:600;margin-bottom:0.6rem}
+.pb{width:100%;padding:0.65rem 0.85rem;border:1px solid transparent;border-radius:8px;cursor:pointer;font-family:inherit;font-size:0.88rem;font-weight:500;text-align:left;margin-bottom:0.3rem;transition:all 0.15s;background:transparent;color:var(--fg)}
+.pb.active{background:var(--purple-soft);border-color:var(--purple-border);color:var(--purple);font-weight:600}
+.pb:hover:not(.active){background:rgba(255,255,255,0.6)}
+.tabs{display:flex;gap:0;margin-bottom:0}
+.tab{padding:0.7rem 1rem;border:none;cursor:pointer;font-family:inherit;font-size:0.8rem;font-weight:600;background:transparent;color:var(--muted);transition:all 0.15s;border-bottom:3px solid transparent}
+.tab.active{background:var(--card-elev);backdrop-filter:blur(12px);color:var(--purple);border-bottom-color:var(--purple)}
+.tabs .tab:first-child{border-radius:10px 0 0 0}.tabs .tab:last-child{border-radius:0 10px 0 0}
+.tc{background:var(--card);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:0 12px 12px 12px;padding:1.75rem}
+.pill{display:inline-flex;align-items:center;padding:0.2rem 0.55rem;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:600;background:var(--purple-soft);border:1px solid var(--purple-border);color:var(--purple)}
+.pill.green{background:var(--green-soft);border-color:var(--green-border);color:var(--green)}
+.pill.teal{background:var(--teal-soft);border-color:var(--teal-border);color:var(--teal)}
+.pill.orange{background:var(--orange-soft);border-color:var(--orange-border);color:var(--orange)}
+.rp-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--card-solid)}
+.gen-layout{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:start}
+.gen-layout .rp-wrap{min-height:300px}
+.paste-zone{border:2px dashed var(--border);border-radius:10px;padding:1.5rem;min-height:200px;background:rgba(255,255,255,0.5);transition:all 0.2s;position:relative}
+.paste-zone.has-content{border-style:solid;border-color:var(--border);background:var(--card-solid)}
+.paste-zone textarea{width:100%;height:100%;min-height:160px;border:none;background:transparent;font-family:inherit;font-size:0.9rem;line-height:1.7;color:var(--fg);resize:none;outline:none;padding:0}
+.paste-zone-label{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;font-weight:600;margin-bottom:0.75rem}
+.claude-btn{display:inline-flex;align-items:center;gap:0.6rem;padding:0.65rem 1.25rem;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:white;border:none;border-radius:8px;font-family:inherit;font-size:0.88rem;font-weight:600;cursor:pointer;box-shadow:0 2px 12px rgba(124,58,237,0.3);transition:all 0.2s;width:100%;justify-content:center}
+.claude-btn:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(124,58,237,0.4)}
+.claude-btn .cb-icon{width:18px;height:18px;border-radius:4px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0}
+.step-row{display:flex;align-items:center;gap:0.65rem;margin-bottom:0.6rem}
+.step-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:0.65rem;font-weight:700;flex-shrink:0}
+.step-num.done{background:var(--green);color:white}
+.step-num.active{background:var(--purple);color:white}
+.step-num.idle{background:var(--border);color:var(--muted)}
+.step-text{font-size:0.82rem;color:var(--fg-soft);line-height:1.4}
+@media(max-width:900px){.gen-layout{grid-template-columns:1fr}}
+.rp-head{background:linear-gradient(135deg,var(--teal),var(--teal-dark));padding:1.25rem 1.5rem}
+.rp-head.purple{background:linear-gradient(135deg,var(--purple),var(--purple-dark))}
+.rp-tier{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:0.3rem}
+.rp-name{font-family:'Libre Baskerville',Georgia,serif;font-size:1.3rem;color:white;font-weight:700}
+.rp-date{font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:0.15rem}
+.rp-body{padding:1.5rem}
+.rs{margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px solid var(--border)}
+.rs:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.rs-lbl{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;margin-bottom:0.6rem}
+.rs-lbl.teal{color:var(--teal)}.rs-lbl.purple{color:var(--purple)}.rs-lbl.orange{color:var(--orange)}
+.rs-txt{font-size:0.93rem;line-height:1.75;color:var(--fg-soft);white-space:pre-wrap}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.cur{display:inline-block;width:2px;height:1em;background:var(--teal);margin-left:2px;animation:blink 1s infinite;vertical-align:text-bottom}
+.toast{position:fixed;top:5rem;left:50%;transform:translateX(-50%);z-index:200;padding:0.75rem 1.25rem;background:var(--green);color:white;border-radius:8px;font-size:0.9rem;font-weight:500;box-shadow:0 4px 20px rgba(22,163,74,0.3);display:none}
+.sftr{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted-light);text-align:center;letter-spacing:0.05em;margin-top:1.5rem;padding-bottom:3rem}
+.lhero{padding:5rem 0 3rem;text-align:center}
+.tier-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:3rem 0}
+.tc-card{padding:2rem;border-radius:16px;border:1px solid var(--border);background:var(--card-elev);backdrop-filter:blur(12px);cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden}
+.tc-card:not([onclick]):hover{transform:none;box-shadow:none}.tc-card[onclick]:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(26,24,37,0.1)}
+.tc-card.t::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--teal),transparent)}
+.tc-card.p::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--purple),transparent)}
+.tc-lbl{font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;margin-bottom:0.85rem}
+.tc-lbl.t{color:var(--teal)}.tc-lbl.p{color:var(--purple)}
+.tc-card h3{font-family:'Libre Baskerville',Georgia,serif;font-size:1.25rem;font-weight:700;color:var(--fg);margin-bottom:0.65rem}
+.tc-card p{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:1.5rem}
+.tc-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.55rem 1.1rem;border-radius:7px;font-size:0.85rem;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+.tc-btn.t{background:var(--teal);color:white}.tc-btn.p{background:var(--purple);color:white}
+.admin-lnk{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted-light);text-align:center;margin-top:2rem;letter-spacing:0.08em}
+.admin-lnk a{color:var(--muted);cursor:pointer;text-decoration:none}.admin-lnk a:hover{color:var(--fg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite}
+@media(max-width:720px){.tier-cards{grid-template-columns:1fr}.admin-layout{flex-direction:column}.admin-sidebar{width:100%;position:static;height:auto}.tabs{flex-wrap:wrap}}
+@media print{.grid-base,.grid-spot,.orb-layer,.ab,.prog-wrap{display:none!important}body{background:white}}
+</style>
+</head>
+<body>
+<div class="orb-layer"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="orb orb-4"></div></div>
+<div class="grid-base"></div><div class="grid-spot" id="spotlight"></div>
+<div class="toast" id="toast"></div>
+
+<!-- LANDING -->
+<div class="view active" id="v-landing">
+  <div class="ab"><div class="ab-brand"><span class="ab-org purple">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div></div>
+  <div class="wrap" style="padding-bottom:4rem">
+    <div class="lhero">
+      <div class="badge purple" style="margin-bottom:1.5rem"><span class="dot"></span>TDEM Leadership Academy</div>
+      <div class="h1">Leadership Practice<br>Inventory</div>
+      <p class="body" style="margin-top:1rem;max-width:540px;margin-left:auto;margin-right:auto;color:var(--muted)">A developmental assessment of leadership practice across five domains. Two tiers, one framework.</p>
+    </div>
+    <div class="tier-cards">
+      <div class="tc-card t" style="cursor:default">
+        <div class="tc-lbl t">Basic Academy</div>
+        <h3>LPI: Self-Assessment</h3>
+        <p>Rate your own practice across 20 behavioral items and three open reflection questions. Results are reviewed by your GKG Leadership Advisor before your group session or Individual Feedback Conversation.</p>
+      </div>
+      <div class="tc-card p" style="cursor:default">
+        <div class="tc-lbl p">Advanced Academy</div>
+        <h3>LPI: Multi-Rater</h3>
+        <p>Gather behavioral observations from the people you lead, work alongside, and report to. Builds on your self-assessment with perspectives from multiple rater groups.</p>
+      </div>
+    </div>
+    <div class="callout callout-teal" style="max-width:680px;margin:0 auto 1.5rem">
+      <div class="clbl teal">To access your survey</div>
+      <p class="body-sm" style="color:var(--fg)">You should have received a personalized link from your GKG Leadership Advisor. Use that link to access your assessment. If you have not received a link, contact your GKG Leadership Advisor directly.</p>
+    </div>
+    <div class="def-block" style="max-width:680px;margin:0 auto 2rem">
+      <div class="def-label" style="color:var(--teal)">A note on the word leadership</div>
+      <blockquote>Leadership, as we use the word here, is not a title or a position; it is a practice. It is the ongoing work of making decisions under uncertainty, enabling others to do their best work, and sustaining both yourself and your team through the demands of the mission. You do not have it or lack it. You do it, more or less effectively, depending on conditions, context, and the habits you have built over time.</blockquote>
+    </div>
+    <div class="admin-lnk"><a onclick="showAdminGate()">GKG Admin</a></div>
+  </div>
+</div>
+
+<!-- ADMIN GATE -->
+<div class="view" id="v-admin-gate">
+  <div class="ab"><div class="ab-brand"><span class="ab-org purple">Golden Key Group</span><span class="ab-title">Admin Access</span></div><div class="ab-right"><button class="btn btn-ghost btn-sm" onclick="go('v-landing')">&#8592; Back</button></div></div>
+  <div style="display:flex;align-items:center;justify-content:center;padding:4rem 1.5rem">
+    <div class="card card-accent" style="max-width:400px;width:100%;padding:2.5rem">
+      <div class="sec-label purple">GKG Admin</div>
+      <div class="h2" style="margin-bottom:1.5rem">Enter access code</div>
+      <input type="password" id="admin-code-input" class="tf" placeholder="Access code" onkeydown="if(event.key==='Enter')checkAdminCode()">
+      <div id="admin-code-err" style="font-size:0.82rem;color:var(--red);margin-top:0.5rem;display:none">Incorrect code.</div>
+      <div class="nav-row" style="margin-top:1.25rem"><div class="spacer"></div><button class="btn btn-primary" onclick="checkAdminCode()">Enter Admin &#8594;</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- SA TERMS -->
+<div class="view" id="v-sa-terms">
+  <div class="ab"><div class="ab-brand"><span class="ab-org teal">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div><div class="ab-right"><div class="badge teal"><span class="dot"></span>LPI: Self-Assessment</div><button class="btn btn-ghost btn-sm" onclick="go('v-landing')">&#8592; Back</button></div></div>
+  <div class="wrap-sm" style="padding-top:2rem;padding-bottom:5rem">
+    <div class="card card-accent-teal">
+      <div class="sec-label teal">LPI: Self-Assessment</div>
+      <div class="h2" style="margin-bottom:0.3rem">Before you begin</div>
+      <p class="body-sm" style="margin-bottom:1.25rem">Please review the following before starting.</p>
+      <div class="terms-item"><div class="ti-arrow teal">&#8250;</div><div><div class="ti-title">Developmental purpose only</div><div class="ti-body">Your results support your own growth. This is not connected to performance reviews or employment decisions.</div></div></div>
+      <div class="terms-item"><div class="ti-arrow teal">&#8250;</div><div><div class="ti-title">There are no right answers</div><div class="ti-body">Rate each behavior based on your honest observation of your own practice. What you notice is more useful than what you aspire to.</div></div></div>
+      <div class="terms-item"><div class="ti-arrow teal">&#8250;</div><div><div class="ti-title">Time required</div><div class="ti-body">Approximately 20 to 25 minutes. Please complete in one sitting if possible.</div></div></div>
+      <div class="terms-item"><div class="ti-arrow teal">&#8250;</div><div><div class="ti-title">Your results are private</div><div class="ti-body">Your self-assessment is reviewed by a GKG Leadership Advisor before your group session or Individual Feedback Conversation. Results are not shared with your supervisor or colleagues.</div></div></div>
+      <div class="terms-item"><div class="ti-arrow teal">&#8250;</div><div><div class="ti-title">Intellectual property</div><div class="ti-body">This instrument is proprietary to Golden Key Group and may not be reproduced without written permission.</div></div></div>
+      <div class="def-block">
+        <div class="def-label" style="color:var(--teal)">A note on the word leadership</div>
+        <blockquote>Leadership, as we use the word here, is not a title or a position; it is a practice. It is the ongoing work of making decisions under uncertainty, enabling others to do their best work, and sustaining both yourself and your team through the demands of the mission. You do not have it or lack it. You do it, more or less effectively, depending on conditions, context, and the habits you have built over time. This assessment is about those habits: what you notice in your own practice, and where there may be room to grow.</blockquote>
+      </div>
+      <div class="agree-row" onclick="saToggle()"><input type="checkbox" id="sa-agree" style="accent-color:var(--teal)" onchange="saToggle()"><label class="agree-label" for="sa-agree">I have read the above and understand this assessment is for developmental purposes only.</label></div>
+      <div class="nav-row"><div class="spacer"></div><button class="btn btn-teal" id="sa-start-btn" disabled onclick="startSA()">Begin Self-Assessment &#8594;</button></div>
+    </div>
+    <div class="sftr">TDEM Leadership Academy · LPI: Self-Assessment · Golden Key Group · Confidential</div>
+  </div>
+</div>
+
+<!-- SA NAME -->
+<div class="view" id="v-sa-name">
+  <div class="ab"><div class="ab-brand"><span class="ab-org teal">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div><div class="ab-right"><div class="badge teal"><span class="dot"></span>LPI: Self-Assessment</div></div></div>
+  <div style="display:flex;align-items:center;justify-content:center;padding:4rem 1.5rem">
+    <div class="card card-accent-teal" style="max-width:480px;width:100%">
+      <div class="sec-label teal">About You</div>
+      <div class="h2" style="margin-bottom:0.3rem">What is your name?</div>
+      <p class="body-sm" style="margin-bottom:1.5rem">Your name is attached to your self-assessment so your GKG Leadership Advisor can match your results to your record.</p>
+      <label style="display:block;font-size:0.88rem;font-weight:600;color:var(--fg);margin-bottom:0.5rem">Full name <span style="color:var(--orange)">*</span></label>
+      <input type="text" class="tf" id="sa-name-input" placeholder="Your full name" oninput="saNameCheck()" onkeydown="if(event.key==='Enter'&&!document.getElementById('sa-name-btn').disabled)saNameContinue()">
+      <div class="nav-row" style="margin-top:1.25rem"><button class="btn btn-ghost" onclick="go('v-sa-terms')">&#8592; Back</button><div class="spacer"></div><button class="btn btn-teal" id="sa-name-btn" disabled onclick="saNameContinue()">Continue &#8594;</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- SA ITEMS -->
+<div class="view" id="v-sa-items">
+  <div class="ab"><div class="ab-brand"><span class="ab-org teal">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div><div class="ab-right"><div class="badge teal"><span class="dot"></span>LPI: Self-Assessment</div></div></div>
+  <div class="prog-wrap"><div class="prog-track"><div class="prog-fill teal" id="sa-pf" style="width:0%"></div></div><span class="prog-label" id="sa-pl">0 of 20</span></div>
+  <div class="wrap-sm" style="padding-top:1.5rem;padding-bottom:5rem"><div class="ddots" id="sa-dots"></div><div class="card" id="sa-dc"></div></div>
+</div>
+
+<!-- SA OPEN -->
+<div class="view" id="v-sa-open">
+  <div class="ab"><div class="ab-brand"><span class="ab-org teal">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div><div class="ab-right"><div class="badge teal"><span class="dot"></span>LPI: Self-Assessment</div></div></div>
+  <div class="wrap-sm" style="padding-top:2rem;padding-bottom:5rem">
+    <div class="card">
+      <div class="sec-label orange">Reflection Questions</div>
+      <div class="h2" style="margin-bottom:0.3rem">Tell me more</div>
+      <p class="body-sm" style="margin-bottom:1.25rem">Three questions to contextualize your ratings. Your responses help your GKG Leadership Advisor understand your practice in your specific context.</p>
+      <div class="callout callout-purple" style="margin-bottom:1.5rem"><div class="clbl purple">What makes reflection useful</div><p class="body-sm" style="color:var(--fg)">The most useful responses describe a <strong>specific situation</strong>: what was happening, what you noticed about yourself, and what the impact was.</p></div>
+      <div class="oqb"><label class="oql">Describe a situation where you were at your best as a leader. <span style="color:var(--orange)">*</span></label><p class="oqs">What was the situation? What did you do? What made it feel like your best work?</p><textarea class="tf" id="sa-q1" placeholder="I was at my best when..." oninput="saUQ('q1')" rows="4"></textarea><div class="dn" id="sa-q1-n">Can you be more specific? What was the situation, and what exactly did you do?</div><div class="ch" id="sa-q1-h">60 characters minimum</div></div>
+      <div class="oqb"><label class="oql">Where in your leadership practice do you feel least confident, or most inconsistent? <span style="color:var(--orange)">*</span></label><p class="oqs">Be honest. What do you notice yourself avoiding, second-guessing, or struggling with?</p><textarea class="tf" id="sa-q2" placeholder="I feel least confident when..." oninput="saUQ('q2')" rows="4"></textarea><div class="dn" id="sa-q2-n">Can you name a specific pattern or situation where this comes up?</div><div class="ch" id="sa-q2-h">60 characters minimum</div></div>
+      <div class="oqb"><label class="oql">Are there organizational conditions or constraints that make it harder for you to lead effectively?</label><p class="oqs">Optional. Name anything that shapes the context your ratings should be understood in.</p><textarea class="tf" id="sa-q3" placeholder="Optional. Leave blank if nothing comes to mind." rows="3"></textarea><div class="ch" id="sa-q3-h">&nbsp;</div></div>
+      <div class="nav-row"><button class="btn btn-ghost" onclick="saBack()">&#8592; Back to Ratings</button><div class="spacer"></div><button class="btn btn-teal" id="sa-sub-btn" disabled onclick="saSubmit()">Submit Self-Assessment</button></div>
+      <div id="sa-oh" style="font-size:0.8rem;color:var(--muted);text-align:right;margin-top:0.5rem;font-family:'JetBrains Mono',monospace"></div>
+    </div>
+    <div class="sftr">Your responses are confidential · Proprietary to Golden Key Group</div>
+  </div>
+</div>
+
+<!-- SA THANKS -->
+<div class="view" id="v-sa-thanks">
+  <div class="ab"><div class="ab-brand"><span class="ab-org teal">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div></div>
+  <div style="display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem">
+    <div class="card card-accent-teal" style="max-width:520px;width:100%;text-align:center">
+      <div class="ti-icon" style="background:var(--green-soft);border:1px solid var(--green-border);color:var(--green)">&#10003;</div>
+      <div class="h2" style="margin-bottom:0.5rem">Assessment complete.</div>
+      <p class="body" style="margin-bottom:1.5rem">Your self-assessment has been submitted. Your GKG Leadership Advisor will review your responses before your group session or Individual Feedback Conversation.</p>
+      <div class="callout callout-teal" style="text-align:left"><div class="clbl teal">What comes next</div><p class="body-sm" style="color:var(--fg-soft)">When you advance to the Advanced Academy, you will complete the <strong>LPI Multi-Rater</strong>, which builds directly on what you have started here. That process adds perspectives from the people you lead, work alongside, and report to.</p></div>
+      <div style="margin-top:1.25rem"><button class="btn btn-ghost" onclick="go('v-landing')">&#8592; Return to Home</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- MR TERMS -->
+<div class="view" id="v-mr-terms">
+  <div class="ab"><div class="ab-brand"><span class="ab-org purple">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div><div class="ab-right"><div class="badge purple"><span class="dot"></span>LPI: Multi-Rater</div><button class="btn btn-ghost btn-sm" onclick="go('v-landing')">&#8592; Back</button></div></div>
+  <div class="wrap-sm" style="padding-top:2rem;padding-bottom:5rem">
+    <div class="card card-accent">
+      <div class="sec-label purple">LPI: Multi-Rater</div>
+      <div class="h2" style="margin-bottom:0.3rem">Feedback for <span id="mr-pname">[Participant Name]</span></div>
+      <p class="body-sm" style="margin-bottom:1.25rem">Please review the following before beginning.</p>
+      <div class="terms-item"><div class="ti-arrow purple">&#8250;</div><div><div class="ti-title">Developmental purpose only</div><div class="ti-body">Results support the participant's growth. This is not connected to performance reviews or employment decisions.</div></div></div>
+      <div class="terms-item"><div class="ti-arrow purple">&#8250;</div><div><div class="ti-title">Your responses are confidential</div><div class="ti-body">Individual ratings are never shared. Results are reported as patterns across rater groups only.</div></div></div>
+      <div class="terms-item"><div class="ti-arrow purple">&#8250;</div><div><div class="ti-title">Time required</div><div class="ti-body">Approximately 20 to 25 minutes. Please complete in one sitting.</div></div></div>
+      <div class="terms-item"><div class="ti-arrow purple">&#8250;</div><div><div class="ti-title">How results are used</div><div class="ti-body">Response patterns are synthesized by a GKG Leadership Advisor. All synthesized content is reviewed by GKG before being shared with the participant.</div></div></div>
+      <div class="terms-item"><div class="ti-arrow purple">&#8250;</div><div><div class="ti-title">Intellectual property</div><div class="ti-body">This instrument is proprietary to Golden Key Group and may not be reproduced without written permission.</div></div></div>
+      <div class="def-block" style="background:var(--purple-soft);border-color:var(--purple-border);border-left-color:var(--purple)">
+        <div class="def-label" style="color:var(--purple)">A note on the word leadership</div>
+        <blockquote>Leadership, as we use the word here, is not a title or a position; it is a practice. It is the ongoing work of making decisions under uncertainty, enabling others to do their best work, and sustaining both yourself and your team through the demands of the mission. You do not have it or lack it. You do it, more or less effectively, depending on conditions, context, and the habits you have built over time.</blockquote>
+      </div>
+      <div class="agree-row" onclick="mrToggle()"><input type="checkbox" id="mr-agree" style="accent-color:var(--purple)" onchange="mrToggle()"><label class="agree-label" for="mr-agree">I have read the above and understand that this feedback is for developmental purposes only.</label></div>
+      <div class="nav-row"><div class="spacer"></div><button class="btn btn-primary" id="mr-start-btn" disabled onclick="startMR()">Begin Feedback &#8594;</button></div>
+    </div>
+    <div class="sftr">TDEM Leadership Academy · LPI: Multi-Rater · Golden Key Group · Confidential</div>
+  </div>
+</div>
+
+<!-- MR NAME -->
+<div class="view" id="v-mr-name">
+  <div class="ab"><div class="ab-brand"><span class="ab-org purple">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div><div class="ab-right"><div class="badge purple"><span class="dot"></span>LPI: Multi-Rater</div></div></div>
+  <div style="display:flex;align-items:center;justify-content:center;padding:4rem 1.5rem">
+    <div class="card card-accent" style="max-width:480px;width:100%">
+      <div class="sec-label purple">About You</div>
+      <div class="h2" style="margin-bottom:0.3rem">Before you rate</div>
+      <p class="body-sm" style="margin-bottom:1.5rem">Your name is used to confirm your submission was received. Your individual ratings are never shared with the participant.</p>
+      <label style="display:block;font-size:0.88rem;font-weight:600;color:var(--fg);margin-bottom:0.5rem">Your full name <span style="color:var(--orange)">*</span></label>
+      <input type="text" id="mr-name-input" placeholder="Your full name" oninput="mrNameCheck()" onkeydown="if(event.key==='Enter')mrNameCheck()" style="margin-bottom:1rem">
+      <label style="display:block;font-size:0.88rem;font-weight:600;color:var(--fg);margin-bottom:0.5rem">Who are you rating? <span style="color:var(--orange)">*</span></label>
+      <input type="text" id="mr-ratee-input" placeholder="Participant's full name" oninput="mrNameCheck()" onkeydown="if(event.key==='Enter'&&!document.getElementById('mr-name-btn').disabled)mrNameContinue()">
+      <div id="mr-ratee-note" style="font-size:0.82rem;color:var(--muted);margin-top:0.4rem;display:none">Participant pre-filled from your survey link.</div>
+      <div class="nav-row" style="margin-top:1.25rem"><button class="btn btn-ghost" onclick="go('v-mr-terms')">&#8592; Back</button><div class="spacer"></div><button class="btn btn-primary" id="mr-name-btn" disabled onclick="mrNameContinue()">Continue &#8594;</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- MR ITEMS -->
+<div class="view" id="v-mr-items">
+  <div class="ab"><div class="ab-brand"><span class="ab-org purple">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div><div class="ab-right"><div class="badge purple"><span class="dot"></span>LPI: Multi-Rater</div></div></div>
+  <div class="prog-wrap"><div class="prog-track"><div class="prog-fill purple" id="mr-pf" style="width:0%"></div></div><span class="prog-label" id="mr-pl">0 of 20</span></div>
+  <div class="wrap-sm" style="padding-top:1.5rem;padding-bottom:5rem"><div class="ddots" id="mr-dots"></div><div class="card" id="mr-dc"></div></div>
+</div>
+
+<!-- MR OPEN -->
+<div class="view" id="v-mr-open">
+  <div class="ab"><div class="ab-brand"><span class="ab-org purple">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div><div class="ab-right"><div class="badge purple"><span class="dot"></span>LPI: Multi-Rater</div></div></div>
+  <div class="wrap-sm" style="padding-top:2rem;padding-bottom:5rem">
+    <div class="card">
+      <div class="sec-label orange">Open Questions</div>
+      <div class="h2" style="margin-bottom:0.3rem">Tell us more</div>
+      <p class="body-sm" style="margin-bottom:1.25rem">Three questions to contextualize your ratings. The most useful feedback is specific and grounded in what you observed.</p>
+      <div class="callout callout-purple" style="margin-bottom:1.5rem"><div class="clbl purple">What makes feedback useful</div><p class="body-sm" style="color:var(--fg)">The most useful responses describe a <strong>specific situation</strong>: what happened, what you observed, and what the impact was.</p></div>
+      <div class="oqb"><label class="oql">Describe a specific situation where you saw this person at their best as a leader. <span style="color:var(--orange)">*</span></label><p class="oqs">What did they do? What was the situation? What was the impact on the people around them?</p><textarea id="mr-q1" placeholder="During [situation], I observed that..." oninput="mrUQ('q1')" rows="4"></textarea><div class="dn" id="mr-q1-n">Can you be more specific about the situation? What exactly did you observe them do?</div><div class="ch" id="mr-q1-h">80 characters minimum</div></div>
+      <div class="oqb"><label class="oql">What is one thing this leader could do differently that would make the biggest difference? <span style="color:var(--orange)">*</span></label><p class="oqs">Be as specific as you can. What have you observed that leads you to this suggestion?</p><textarea id="mr-q2" placeholder="I've noticed that when [situation]..." oninput="mrUQ('q2')" rows="4"></textarea><div class="dn" id="mr-q2-n">What specifically have you observed? A concrete example would help.</div><div class="ch" id="mr-q2-h">80 characters minimum</div></div>
+      <div class="oqb"><label class="oql">Are there organizational conditions or constraints that make it harder for this person to lead effectively?</label><p class="oqs">Optional.</p><textarea id="mr-q3" placeholder="Optional. Leave blank if nothing comes to mind." rows="3"></textarea><div class="ch" id="mr-q3-h">&nbsp;</div></div>
+      <div class="nav-row"><button class="btn btn-ghost" onclick="mrBack()">&#8592; Back to Ratings</button><div class="spacer"></div><button class="btn btn-primary" id="mr-sub-btn" disabled onclick="mrSubmit()">Submit Feedback</button></div>
+      <div id="mr-oh" style="font-size:0.8rem;color:var(--muted);text-align:right;margin-top:0.5rem;font-family:'JetBrains Mono',monospace"></div>
+    </div>
+    <div class="sftr">Your responses are confidential · Proprietary to Golden Key Group</div>
+  </div>
+</div>
+
+<!-- MR THANKS -->
+<div class="view" id="v-mr-thanks">
+  <div class="ab"><div class="ab-brand"><span class="ab-org purple">Golden Key Group</span><span class="ab-title">TDEM Leadership Practice Inventory</span></div></div>
+  <div style="display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem">
+    <div class="card card-accent" style="max-width:520px;width:100%;text-align:center">
+      <div class="ti-icon" style="background:var(--purple-soft);border:1px solid var(--purple-border);color:var(--purple)">&#10003;</div>
+      <div class="h2" style="margin-bottom:0.5rem">Thank you.</div>
+      <p class="body" style="margin-bottom:1.5rem">Your feedback has been submitted. Individual responses are confidential and will only appear as patterns across rater groups, never attributed to you personally.</p>
+      <div class="callout callout-purple" style="text-align:left"><p class="body-sm" style="color:var(--fg-soft)">Your input genuinely matters. The most useful feedback often comes from people who took the time to be specific and honest.</p></div>
+      <div style="margin-top:1.25rem"><button class="btn btn-ghost" onclick="go('v-landing')">&#8592; Return to Home</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="view" id="v-admin">
+  <div class="ab"><div class="ab-brand"><span class="ab-org purple">Golden Key Group</span><span class="ab-title">TDEM LPI: Admin Panel</span></div><div class="ab-right"><button class="btn btn-ghost btn-sm" onclick="go('v-landing')">&#8592; Exit Admin</button></div></div>
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <div class="slbl" style="color:var(--purple)">Participants</div>
+      <div id="admin-p-list" style="flex:1;overflow-y:auto"></div>
+      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)">
+        <div class="slbl" style="color:var(--muted)">Add participant</div>
+        <input type="text" id="admin-new-name" placeholder="Full name" style="margin-bottom:0.5rem" onkeydown="if(event.key==='Enter')adminAdd()">
+        <button class="btn btn-primary btn-sm" style="width:100%" onclick="adminAdd()">Add &#8594;</button>
+        <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid var(--border);display:flex;gap:0.4rem">
+          <button class="btn btn-ghost btn-sm" style="flex:1" onclick="adminExport()">Export</button>
+          <button class="btn btn-ghost btn-sm" style="flex:1" onclick="document.getElementById('admin-imp').click()">Import</button>
+          <input type="file" id="admin-imp" accept="application/json" style="display:none" onchange="adminImport(this.files[0])">
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted-light);margin-top:0.5rem;line-height:1.5">Data syncs to cloud. Export as backup.</div>
+      </div>
+    </div>
+    <div class="admin-main" id="admin-main">
+      <div style="text-align:center;padding:5rem 0;color:var(--muted)"><div style="font-size:2rem;opacity:0.3;margin-bottom:0.85rem">&#8678;</div><div>Select a participant</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCALE=['Never','Rarely','Sometimes','Often','Consistently'];
+const SD_SA={'Never':"I don't do this; it isn't part of how I currently work.",'Rarely':"I do this occasionally, but it isn't a consistent part of my practice.",'Sometimes':"I do this sometimes; it's inconsistent. Circumstances affect whether or where I show up this way.",'Often':"I do this regularly. It shows up in my practice most of the time.",'Consistently':"This is a reliable part of how I lead. People who work with me would recognize it."};
+const SD_MR={'Never':"I have not observed this behavior.",'Rarely':"I have observed this occasionally, but it is not consistent.",'Sometimes':"I see this sometimes; it depends on the situation.",'Often':"I observe this regularly in how they lead.",'Consistently':"This is a reliable, recognizable part of how they lead."};
+const DOMAINS=['Decision-Making Under Pressure','Self-Management Under Pressure','Team Leadership and Enabling Others','Strategic Focus and Cross-Boundary Influence','Resilience and Sustainable Leadership'];
+const SA_ITEMS=[
+  {id:1,d:0,text:"I stay calm and think clearly when information is incomplete or the situation is rapidly changing."},
+  {id:2,d:0,text:"I recognize when a situation needs people to change how we work together, not just a technical fix.",note:"This item is about how you read a situation rather than what you do. A lower rating may reflect limited opportunity to observe it, not absent capability."},
+  {id:3,d:0,text:"I make timely decisions without waiting for perfect information, then adjust as new information becomes available."},
+  {id:4,d:0,text:"I make decisions in a way that reflects clear principles, even when the situation is ambiguous or pressured."},
+  {id:5,d:1,text:"When under stress, I adjust in ways that help me respond rather than react."},
+  {id:6,d:1,text:"I maintain composure in high-pressure situations in a way that helps, not hinders, the people around me."},
+  {id:7,d:1,text:"I adjust my communication approach based on who I am talking with and what the situation requires."},
+  {id:8,d:1,text:"I take visible steps to protect my own recovery time and my team's, rather than treating overextension as the expected norm."},
+  {id:9,d:2,text:"I lead through others rather than doing the work myself: I delegate, enable, and get out of the way."},
+  {id:10,d:2,text:"I create space for people to raise concerns, ask questions, or disagree without fear of negative consequences."},
+  {id:11,d:2,text:"I ask questions and listen to understand before moving to solutions."},
+  {id:12,d:2,text:"I build the judgment and capability of others rather than solving problems for them."},
+  {id:13,d:3,text:"I distinguish between what is urgent and what is actually important, and direct my attention accordingly."},
+  {id:14,d:3,text:"I build and maintain relationships with people outside my direct team or division."},
+  {id:15,d:3,text:"I get things done through cooperation and influence, not just positional authority."},
+  {id:16,d:3,text:"I connect my team's day-to-day work to the broader mission in ways people can understand."},
+  {id:17,d:4,text:"I return to steady, effective leadership after setbacks, high-demand periods, or difficult sustained work."},
+  {id:18,d:4,text:"I pay attention to the wellbeing of my team, not just task completion."},
+  {id:19,d:4,text:"I demonstrate that taking care of myself and my team is a leadership responsibility, not a weakness."},
+  {id:20,d:4,text:"I create space for my team to process and recover after difficult work, not just move immediately to the next thing."}
+];
+const MR_ITEMS=[
+  {id:1,d:0,text:"Stays calm and thinks clearly when information is incomplete or the situation is rapidly changing."},
+  {id:2,d:0,text:"Recognizes when a situation needs people to change how they work together, not just a technical fix.",note:"This item describes how the leader reads a situation rather than what they do. Raters need sufficient exposure to observe it."},
+  {id:3,d:0,text:"Makes timely decisions without waiting for perfect information, then adjusts as new information becomes available."},
+  {id:4,d:0,text:"Makes decisions in a way that reflects clear principles, even when the situation is ambiguous or pressured."},
+  {id:5,d:1,text:"When under stress, adjusts in ways that help them respond rather than react."},
+  {id:6,d:1,text:"Maintains composure in high-pressure situations in a way that helps, not hinders, the people around them."},
+  {id:7,d:1,text:"Adjusts their communication approach based on who they are talking with and what the situation requires."},
+  {id:8,d:1,text:"Takes visible steps to protect recovery time, their own and their team's, rather than treating overextension as the expected norm."},
+  {id:9,d:2,text:"Leads the team rather than doing the work themselves: delegates, enables, and gets out of the way."},
+  {id:10,d:2,text:"Creates space for people to raise concerns, ask questions, or disagree without fear of negative consequences."},
+  {id:11,d:2,text:"Asks questions and listens to understand before moving to solutions."},
+  {id:12,d:2,text:"Builds the judgment and capability of others rather than solving problems for them."},
+  {id:13,d:3,text:"Distinguishes between what is urgent and what is actually important, and directs their attention accordingly."},
+  {id:14,d:3,text:"Builds and maintains relationships with people outside their direct team or division."},
+  {id:15,d:3,text:"Gets things done through cooperation and influence, not just positional authority."},
+  {id:16,d:3,text:"Connects the team's day-to-day work to the broader mission in ways people can understand."},
+  {id:17,d:4,text:"Returns to steady, effective leadership after setbacks, high-demand periods, or difficult sustained work."},
+  {id:18,d:4,text:"Pays attention to the wellbeing of their team, not just task completion."},
+  {id:19,d:4,text:"Demonstrates that taking care of themselves and their team is a leadership responsibility, not a weakness."},
+  {id:20,d:4,text:"Creates space for the team to process and recover after difficult work, not just move immediately to the next thing."}
+];
+const ADMIN_CODE='GKG2026';
+const SA_MIN=60,MR_MIN=80;
+
+// NAV
+function go(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});const sp=document.getElementById('spotlight');sp.className=id.startsWith('v-sa')||id==='v-landing'?'grid-spot teal':'grid-spot';}
+function showAdminGate(){document.getElementById('admin-code-input').value='';document.getElementById('admin-code-err').style.display='none';go('v-admin-gate');}
+function checkAdminCode(){const v=document.getElementById('admin-code-input').value.trim();if(v===ADMIN_CODE){adminLoad();go('v-admin');}else{document.getElementById('admin-code-err').style.display='block';}}
+
+// STORAGE
+const st={get:k=>{try{return JSON.parse(localStorage.getItem('tdem_lpi_'+k));}catch(e){return null;}},set:(k,v)=>localStorage.setItem('tdem_lpi_'+k,JSON.stringify(v)),keys:()=>Object.keys(localStorage).filter(k=>k.startsWith('tdem_lpi_')).map(k=>k.replace('tdem_lpi_',''))};
+
+// ── Supabase ──
+const SB_URL='https://tadkzdvbqbwqlcgbcrij.supabase.co';
+const SB_KEY='sb_publishable_NTkLcodV_TJS27Zx69PUQw_GCXSuJCN';
+async function sbFetch(path,opts={}){
+  const res=await fetch(`${SB_URL}/rest/v1/${path}`,{...opts,headers:{'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`,'Content-Type':'application/json','Accept':'application/json','Prefer':'return=representation',...(opts.headers||{})}});
+  if(!res.ok){const t=await res.text();console.error('Supabase',res.status,t);throw new Error(t);}
+  if(res.status===204)return null;
+  const t=await res.text();return t?JSON.parse(t):null;
+}
+const DB={
+  async listParticipants(){
+    const rows=await sbFetch('participants?select=*&order=created_at.desc');
+    const out={};(rows||[]).forEach(r=>{out[r.id]={id:r.id,name:r.name,createdAt:r.created_at};});return out;
+  },
+  async addParticipant(pid,name){
+    await sbFetch('participants',{method:'POST',body:JSON.stringify({id:pid,name})});
+  },
+  async upsertParticipant(pid,name){
+    await sbFetch('participants?on_conflict=id',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates,return=representation'},body:JSON.stringify({id:pid,name})});
+  },
+  async getResponses(pid){
+    const rows=await sbFetch(`responses?participant_id=eq.${encodeURIComponent(pid)}&select=*&order=submitted_at.asc`);
+    return(rows||[]).map(r=>({id:r.id,participantId:r.participant_id,type:r.rater_group==='self-assessment'?'self-assessment':'multi-rater',raterGroup:r.rater_group,raterName:r.open_q?.raterName||'',rateeName:r.open_q?.rateeName||'',participantName:r.open_q?.participantName||'',ratings:r.ratings||{},openQ:{q1:r.open_q?.q1||'',q2:r.open_q?.q2||'',q3:r.open_q?.q3||''},submittedAt:r.submitted_at}));
+  },
+  async addResponse(sub){
+    await sbFetch('responses',{method:'POST',body:JSON.stringify({id:sub.id,participant_id:sub.pid||sub.participantId,rater_group:sub.type==='self-assessment'?'self-assessment':sub.raterName||sub.raterGroup||'Rater',ratings:sub.ratings,open_q:{q1:sub.openQ.q1,q2:sub.openQ.q2,q3:sub.openQ.q3,type:sub.type,participantName:sub.participantName||'',raterName:sub.raterName||'',rateeName:sub.rateeName||''}})});
+  },
+  async exportAll(){
+    const[p,r]=await Promise.all([sbFetch('participants?select=*'),sbFetch('responses?select=*')]);
+    return{exportedAt:new Date().toISOString(),participants:p||[],responses:r||[]};
+  }
+};
+let sbOk=true; // track if Supabase is reachable
+
+// TOAST
+function toast(msg,ms=2500){const el=document.getElementById('toast');el.textContent='✓ '+msg;el.style.display='block';setTimeout(()=>el.style.display='none',ms);}
+
+// UID
+function uid(){return Math.random().toString(36).slice(2,10);}
+
+// SURVEY ENGINE (shared)
+function mkSurvey(cfg){
+  const {items,rCls,sCls,dCls,dotsDone,dotsActive,sdMap,dotsId,dcId,pfId,plId,raterGroup} = cfg;
+  const r={ratings:{},domainIdx:0,openQ:{q1:'',q2:'',q3:''},nudgeTimers:{}};
+  r.allRated=()=>items.every(it=>r.ratings[it.id]!==undefined);
+  r.renderDots=()=>{document.getElementById(dotsId).innerHTML=DOMAINS.map((d,i)=>{const done=items.filter(it=>it.d===i).every(it=>r.ratings[it.id]!==undefined);const cls=i===r.domainIdx?'dd '+dotsActive:(done?'dd '+dotsDone:'dd');return`<div class="${cls}" title="${d}" onclick="${cfg.jumpFn}(${i})"></div>`}).join('');};
+  r.renderDomain=()=>{
+    const domItems=items.filter(it=>it.d===r.domainIdx);
+    const allDone=domItems.every(it=>r.ratings[it.id]!==undefined);
+    const isLast=r.domainIdx===DOMAINS.length-1;
+    let h=`<div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;flex-wrap:wrap;"><span class="snum ${sCls}" style="font-size:0.65rem">Domain ${r.domainIdx+1} of ${DOMAINS.length}</span><span class="h3">${DOMAINS[r.domainIdx]}</span></div><div class="scale-legend">${SCALE.map(s=>`<div class="sli">${s}</div>`).join('')}</div>`;
+    domItems.forEach(item=>{
+      const sel=r.ratings[item.id];const rated=sel!==undefined;
+      h+=`<div class="item-block${rated?' '+rCls:''}" id="${cfg.pfx}-item-${item.id}">`;
+      if(item.note)h+=`<div class="inote">${item.note}</div>`;
+      h+=`<div class="itr"><span class="iid">#${item.id}</span>${item.text}</div><div class="sbg">${SCALE.map((s,si)=>{const isSel=sel===si;return`<button class="sb ${dCls}${isSel?' '+rCls.replace('r','s'):''}" onclick="${cfg.rateFn}(${item.id},${si})"><div class="sb-dot"></div><span class="sb-lbl">${s}</span></button>`}).join('')}</div><div class="sdr${cfg.isPurple?' pd':''}">${rated?sdMap[SCALE[sel]]:''}</div></div>`;
+    });
+    h+=`<div class="nav-row">`;
+    if(r.domainIdx>0)h+=`<button class="btn btn-ghost" onclick="${cfg.prevFn}()">&#8592; Previous</button>`;
+    h+=`<div class="spacer"></div>`;
+    if(!isLast)h+=`<button class="btn ${cfg.isPurple?'btn-primary':'btn-teal'}" ${allDone?'':'disabled'} onclick="${cfg.nextFn}()">Next Domain &#8594;</button>`;
+    else if(r.allRated())h+=`<button class="btn ${cfg.isPurple?'btn-primary':'btn-teal'}" onclick="${cfg.openFn}()">Open Questions &#8594;</button>`;
+    else h+=`<span style="font-size:0.8rem;color:var(--muted);font-family:'JetBrains Mono',monospace">Rate all items to continue</span>`;
+    h+=`</div>`;
+    document.getElementById(dcId).innerHTML=h;
+    r.renderDots();
+    const n=Object.keys(r.ratings).length;
+    document.getElementById(pfId).style.width=Math.round(n/items.length*100)+'%';
+    document.getElementById(plId).textContent=n+' of '+items.length;
+  };
+  return r;
+}
+
+// SA
+const saS=mkSurvey({items:SA_ITEMS,rCls:'rt',sCls:'teal',dCls:'ht',dotsDone:'dt',dotsActive:'at',sdMap:SD_SA,dotsId:'sa-dots',dcId:'sa-dc',pfId:'sa-pf',plId:'sa-pl',pfx:'sa',isPurple:false,jumpFn:'saJump',rateFn:'saRate',prevFn:'saPrev',nextFn:'saNext',openFn:'saGoOpen'});
+function saToggle(){const cb=document.getElementById('sa-agree');if(event&&event.target!==cb)cb.checked=!cb.checked;document.getElementById('sa-start-btn').disabled=!cb.checked;}
+let saName='',saPid='',saPname='';
+function startSA(){document.getElementById('sa-name-input').value='';saName='';document.getElementById('sa-name-btn').disabled=true;go('v-sa-name');}
+function saNameCheck(){const v=document.getElementById('sa-name-input').value.trim();document.getElementById('sa-name-btn').disabled=!v;}
+function saNameContinue(){saName=document.getElementById('sa-name-input').value.trim();saS.ratings={};saS.domainIdx=0;go('v-sa-items');saS.renderDomain();}
+function saJump(i){const done=SA_ITEMS.filter(it=>it.d===saS.domainIdx).every(it=>saS.ratings[it.id]!==undefined);if(i<=saS.domainIdx||done){saS.domainIdx=i;saS.renderDomain();}}
+function saRate(id,si){saS.ratings[id]=si;saS.renderDomain();const nx=SA_ITEMS.filter(it=>it.d===saS.domainIdx).find(it=>saS.ratings[it.id]===undefined);if(nx){const el=document.getElementById('sa-item-'+nx.id);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});}}
+function saNext(){saS.domainIdx++;saS.renderDomain();document.getElementById('sa-dc').scrollIntoView({behavior:'smooth',block:'start'});}
+function saPrev(){saS.domainIdx--;saS.renderDomain();document.getElementById('sa-dc').scrollIntoView({behavior:'smooth',block:'start'});}
+function saGoOpen(){go('v-sa-open');}
+function saBack(){go('v-sa-items');saS.domainIdx=DOMAINS.length-1;saS.renderDomain();}
+function saUQ(q){const v=document.getElementById('sa-'+q).value;saS.openQ[q]=v;if(q!=='q3'){const l=v.length;const h=document.getElementById('sa-'+q+'-h');const n=document.getElementById('sa-'+q+'-n');if(l===0){h.textContent=SA_MIN+' characters minimum';h.className='ch';n.style.display='none';}else if(l<SA_MIN){h.textContent=(SA_MIN-l)+' more characters';h.className='ch';if(l>20){clearTimeout(saS.nudgeTimers[q]);saS.nudgeTimers[q]=setTimeout(()=>{n.style.display='block';},3500);}}else{h.textContent='Good';h.className='ch ok';n.style.display='none';}}const ok=saS.openQ.q1.length>=SA_MIN&&saS.openQ.q2.length>=SA_MIN;document.getElementById('sa-sub-btn').disabled=!ok;document.getElementById('sa-oh').textContent=(!ok&&(saS.openQ.q1.length>0||saS.openQ.q2.length>0))?'Please add more detail to the required questions before submitting':'';}
+function saSubmit(){const btn=document.getElementById('sa-sub-btn');btn.disabled=true;btn.textContent='Submitting...';const pid=saPid||'sa-'+uid();const sub={id:uid(),submittedAt:new Date().toISOString(),type:'self-assessment',participantName:saName,pid,ratings:{...saS.ratings},openQ:{...saS.openQ}};
+  // Save to localStorage as fallback
+  let ex=st.get('responses:'+pid)||[];ex.push(sub);st.set('responses:'+pid,ex);
+  // Save to Supabase
+  (async()=>{try{await DB.upsertParticipant(pid,saName);await DB.addResponse(sub);console.log('Saved to cloud');}catch(e){console.warn('Cloud save failed, localStorage only:',e);}})();
+  setTimeout(()=>go('v-sa-thanks'),600);}
+
+// MR
+let mrPid='',mrPname='',mrGroup='',mrRaterName='';
+const mrS=mkSurvey({items:MR_ITEMS,rCls:'rp',sCls:'purple',dCls:'hp',dotsDone:'dp',dotsActive:'ap',sdMap:SD_MR,dotsId:'mr-dots',dcId:'mr-dc',pfId:'mr-pf',plId:'mr-pl',pfx:'mr',isPurple:true,jumpFn:'mrJump',rateFn:'mrRate',prevFn:'mrPrev',nextFn:'mrNext',openFn:'mrGoOpen'});
+function mrToggle(){const cb=document.getElementById('mr-agree');if(event&&event.target!==cb)cb.checked=!cb.checked;document.getElementById('mr-start-btn').disabled=!cb.checked;}
+function startMR(){document.getElementById('mr-name-input').value='';mrRaterName='';const ri=document.getElementById('mr-ratee-input');ri.value=mrPname||'';const note=document.getElementById('mr-ratee-note');if(mrPname){note.style.display='block';ri.readOnly=true;ri.style.background='rgba(13,148,136,0.05)';ri.style.borderColor='var(--teal-border)';}else{note.style.display='none';ri.readOnly=false;ri.style.background='';ri.style.borderColor='';}mrNameCheck();go('v-mr-name');}
+function mrNameCheck(){const n=document.getElementById('mr-name-input').value.trim();const r=document.getElementById('mr-ratee-input').value.trim();document.getElementById('mr-name-btn').disabled=!(n&&r);}
+function mrNameContinue(){mrRaterName=document.getElementById('mr-name-input').value.trim();const ratee=document.getElementById('mr-ratee-input').value.trim();if(ratee)mrPname=ratee;mrS.ratings={};mrS.domainIdx=0;go('v-mr-items');mrS.renderDomain();}
+function mrJump(i){const done=MR_ITEMS.filter(it=>it.d===mrS.domainIdx).every(it=>mrS.ratings[it.id]!==undefined);if(i<=mrS.domainIdx||done){mrS.domainIdx=i;mrS.renderDomain();}}
+function mrRate(id,si){mrS.ratings[id]=si;mrS.renderDomain();const nx=MR_ITEMS.filter(it=>it.d===mrS.domainIdx).find(it=>mrS.ratings[it.id]===undefined);if(nx){const el=document.getElementById('mr-item-'+nx.id);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});}}
+function mrNext(){mrS.domainIdx++;mrS.renderDomain();document.getElementById('mr-dc').scrollIntoView({behavior:'smooth',block:'start'});}
+function mrPrev(){mrS.domainIdx--;mrS.renderDomain();document.getElementById('mr-dc').scrollIntoView({behavior:'smooth',block:'start'});}
+function mrGoOpen(){go('v-mr-open');}
+function mrBack(){go('v-mr-items');mrS.domainIdx=DOMAINS.length-1;mrS.renderDomain();}
+function mrUQ(q){const v=document.getElementById('mr-'+q).value;mrS.openQ[q]=v;if(q!=='q3'){const l=v.length;const h=document.getElementById('mr-'+q+'-h');const n=document.getElementById('mr-'+q+'-n');if(l===0){h.textContent=MR_MIN+' characters minimum';h.className='ch';n.style.display='none';}else if(l<MR_MIN){h.textContent=(MR_MIN-l)+' more characters';h.className='ch';if(l>25){clearTimeout(mrS.nudgeTimers[q]);mrS.nudgeTimers[q]=setTimeout(()=>{n.style.display='block';},3500);}}else{h.textContent='Good';h.className='ch ok';n.style.display='none';}}const ok=mrS.openQ.q1.length>=MR_MIN&&mrS.openQ.q2.length>=MR_MIN;document.getElementById('mr-sub-btn').disabled=!ok;document.getElementById('mr-oh').textContent=(!ok&&(mrS.openQ.q1.length>0||mrS.openQ.q2.length>0))?'Please add more detail to the required questions before submitting':'';}
+function mrSubmit(){const btn=document.getElementById('mr-sub-btn');btn.disabled=true;btn.textContent='Submitting...';const pid=mrPid||'mr-'+uid();const sub={id:uid(),submittedAt:new Date().toISOString(),type:'multi-rater',raterName:mrRaterName,rateeName:mrPname,raterGroup:mrGroup||'Rater',pid,ratings:{...mrS.ratings},openQ:{...mrS.openQ}};
+  let ex=st.get('responses:'+pid)||[];ex.push(sub);st.set('responses:'+pid,ex);
+  (async()=>{try{await DB.addResponse(sub);console.log('Saved to cloud');}catch(e){console.warn('Cloud save failed:',e);}})();
+  setTimeout(()=>go('v-mr-thanks'),600);}
+
+// ADMIN
+let aPs={},aPid=null,aRes=[],aTab='responses';
+function adminLoad(){
+  const emptyMsg='<div style="text-align:center;padding:5rem 0;color:var(--muted)"><div style="font-size:2rem;opacity:0.3;margin-bottom:0.85rem">&#8678;</div><div>Select a participant</div></div>';
+  document.getElementById('admin-main').innerHTML=emptyMsg;
+  // Try Supabase first, fall back to localStorage
+  (async()=>{try{aPs=await DB.listParticipants();sbOk=true;st.set('participants',aPs);adminRSB();console.log('Loaded from cloud:',Object.keys(aPs).length,'participants');}catch(e){console.warn('Cloud unavailable, using local:',e);sbOk=false;aPs=st.get('participants')||{};adminRSB();}})();
+}
+function adminRSB(){const l=document.getElementById('admin-p-list');const arr=Object.values(aPs);if(!arr.length){l.innerHTML='<div style="font-size:0.82rem;color:var(--muted-light);font-style:italic">No participants yet.</div>';return;}l.innerHTML=arr.map(p=>`<button class="pb${aPid===p.id?' active':''}" onclick="adminSel('${p.id}')">${p.name}</button>`).join('');}
+function adminAdd(){const name=document.getElementById('admin-new-name').value.trim();if(!name)return;const pid=uid();aPs[pid]={name,id:pid,createdAt:new Date().toISOString()};st.set('participants',aPs);document.getElementById('admin-new-name').value='';adminRSB();
+  (async()=>{try{await DB.addParticipant(pid,name);toast('Participant added (synced)');}catch(e){console.warn('Cloud save failed:',e);toast('Participant added (local only)');}})();}
+function adminSel(pid){aPid=pid;aTab='responses';adminRSB();
+  // Try Supabase first
+  (async()=>{try{aRes=await DB.getResponses(pid);st.set('responses:'+pid,aRes);adminRM();console.log('Loaded',aRes.length,'responses from cloud');}catch(e){console.warn('Cloud unavailable:',e);aRes=st.get('responses:'+pid)||[];adminRM();}})();}
+function adminTab(k){aTab=k;adminRM();}
+
+function adminRM(){
+  const p=aPs[aPid];
+  const saR=aRes.filter(r=>r.type==='self-assessment');
+  const mrR=aRes.filter(r=>r.type==='multi-rater');
+  const base=window.location.href.split('#')[0];
+  const mrLink=base+'#mr/'+aPid+'/'+encodeURIComponent(p.name);
+  const saLink=base+'#self/'+aPid+'/'+encodeURIComponent(p.name);
+  const tabs=[{k:'responses',l:'Responses'},{k:'sa-report',l:'Self-Assessment Report Brief'},{k:'mr-report',l:'Multi-Rater Report Brief'},{k:'prep',l:'Advisor Prep'}];
+  let h=`<div><div style="margin-bottom:1.25rem"><div class="h2" style="margin-bottom:0.5rem">${p.name}</div><div style="display:flex;gap:0.4rem;flex-wrap:wrap">${saR.length?`<span class="pill teal">Self-Assessment: ${saR.length}</span>`:'<span class="pill orange">No self-assessment yet</span>'}${mrR.length?`<span class="pill">Multi-Rater: ${mrR.length} rater${mrR.length!==1?'s':''}</span>`:''}</div></div><div class="tabs">${tabs.map((t,i)=>`<button class="tab${aTab===t.k?' active':''}" style="${i===0?'border-radius:10px 0 0 0':i===tabs.length-1?'border-radius:0 10px 0 0':''}" onclick="adminTab('${t.k}')">${t.l}</button>`).join('')}</div><div class="tc">`;
+
+  if(aTab==='responses'){
+    h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem"><div class="callout callout-teal" style="margin-bottom:0"><div class="clbl teal">Self-Assessment link</div><div class="body-sm" style="margin-bottom:0.5rem">Send to ${p.name}:</div><code style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;word-break:break-all;display:block;background:rgba(255,255,255,0.8);border:1px solid var(--border);border-radius:4px;padding:0.45rem 0.65rem;color:var(--fg-soft)">${saLink}</code><button class="btn btn-ghost btn-sm" style="margin-top:0.5rem" onclick="navigator.clipboard.writeText('${saLink}');toast('Self-Assessment link copied')">Copy</button></div><div class="callout callout-purple" style="margin-bottom:0"><div class="clbl purple">Multi-Rater link</div><div class="body-sm" style="margin-bottom:0.5rem">Share with raters:</div><code style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;word-break:break-all;display:block;background:rgba(255,255,255,0.8);border:1px solid var(--border);border-radius:4px;padding:0.45rem 0.65rem;color:var(--fg-soft)">${mrLink}</code><button class="btn btn-ghost btn-sm" style="margin-top:0.5rem" onclick="navigator.clipboard.writeText('${mrLink}');toast('MR link copied')">Copy</button></div></div>`;
+    if(!aRes.length){h+=`<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.9rem">No responses yet.</div>`;}
+    else{h+=aRes.map(r=>{const its=r.type==='self-assessment'?SA_ITEMS:MR_ITEMS;return`<div style="padding:1rem 1.1rem;background:rgba(255,255,255,0.6);border:1px solid var(--border);border-radius:10px;margin-bottom:0.75rem"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem"><span class="pill${r.type==='self-assessment'?' teal':''}">${r.type==='self-assessment'?(r.participantName||'Self-Assessment'):(r.raterName||'Rater')}</span><div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted-light)">${new Date(r.submittedAt).toLocaleDateString()}</div></div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.4rem;margin-bottom:0.75rem">${DOMAINS.map((d,di)=>{const vals=its.filter(it=>it.d===di).map(it=>r.ratings[it.id]).filter(v=>v!==undefined);const avg=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null;const lbl=avg!==null?SCALE[Math.round(avg)]:'N/A';return`<div style="text-align:center;padding:0.5rem 0.25rem;background:rgba(255,255,255,0.5);border:1px solid var(--border);border-radius:6px"><div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.2rem">D${di+1}</div><div style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:600;color:var(--fg)">${lbl}</div></div>`;}).join('')}</div>${r.openQ.q1?`<div style="font-size:0.82rem;color:var(--fg-soft);line-height:1.6;border-top:1px solid var(--border);padding-top:0.6rem">"${r.openQ.q1.substring(0,120)}${r.openQ.q1.length>120?'...':''}"</div>`:''}</div>`;}).join('');}
+  }
+
+  if(aTab==='sa-report'||aTab==='mr-report'){
+    const isSA=aTab==='sa-report';const typ=isSA?'sa':'mr';const rArr=isSA?saR:mrR;const col=isSA?'teal':'purple';
+    if(!rArr.length){h+=`<div style="text-align:center;padding:2.5rem;color:var(--muted);font-size:0.9rem">No ${isSA?'self-assessment':'multi-rater'} responses yet.</div>`;}
+    else{h+=`<div>
+      <div style="margin-bottom:1.25rem">
+        <div class="clbl ${col}" style="margin-bottom:0.4rem">${isSA?'Self-Assessment':'Multi-Rater'} Report Brief</div>
+        <p class="body-sm" style="color:var(--fg-soft)">The prompt opens Claude in a popup window. Paste the response into the box on the right, and it renders here automatically.</p>
+      </div>
+      <div class="step-row" id="${typ}-step1"><div class="step-num active" id="${typ}-s1n">1</div><div class="step-text"><strong>Open Claude</strong>: the prompt loads automatically. Hit send.</div></div>
+      <div class="step-row" style="margin-bottom:1.25rem"><div class="step-num idle" id="${typ}-s2n">2</div><div class="step-text" id="${typ}-s2t"><strong>Paste the response</strong> into the box on the right.</div></div>
+      <div class="gen-layout">
+        <div>
+          <button class="claude-btn" onclick="adminOpenClaude('${typ}','${aPid}')">
+            <div class="cb-icon">C</div>
+            <span id="${typ}-gen-inner">Open in Claude</span>
+          </button>
+          <div style="margin-top:1.25rem" class="rp-wrap">
+            <div class="rp-head${isSA?'':' purple'}">
+              <div class="rp-tier">${isSA?'LPI: Self-Assessment':'LPI: Multi-Rater'} · GKG Draft</div>
+              <div class="rp-name">${p.name}</div>
+              <div class="rp-date">${new Date().toLocaleDateString()}</div>
+            </div>
+            <div class="rp-body" id="${typ}-rb">
+              <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.88rem;font-style:italic">Report preview appears here after you paste the response.</div>
+            </div>
+          </div>
+          <div class="nav-row" style="margin-top:0.75rem">
+            <button class="btn btn-ghost btn-sm" id="${typ}-copy-btn" style="display:none" onclick="navigator.clipboard.writeText(document.getElementById('${typ}-rb').innerText);toast('Report copied')">Copy text</button>
+            <div class="spacer"></div>
+            <button class="btn btn-ghost btn-sm" id="${typ}-print-btn" style="display:none" onclick="adminDownloadPDF('${typ}','${p.name}','${isSA?'teal':'purple'}')">Download PDF</button>
+          </div>
+        </div>
+        <div>
+          <div class="paste-zone-label" style="color:var(--${col})">Paste Claude's response here</div>
+          <div class="paste-zone" id="${typ}-paste-zone">
+            <textarea id="${typ}-paste-ta" placeholder="Paste here after Claude responds..." oninput="adminPasteRender('${typ}')"></textarea>
+          </div>
+          <div class="callout callout-orange" style="margin-top:1rem">
+            <div class="clbl orange">Before sharing</div>
+            <p class="body-sm" style="color:var(--fg)">Review for accuracy and tone. Edit the paste box freely. This is a GKG draft, not a final document.</p>
+          </div>
+        </div>
+      </div>
+    </div>`;}
+  }
+
+  if(aTab==='prep'){
+    h+=`<div><div style="background:linear-gradient(135deg,var(--purple-dark),#4c1d95);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.25rem"><div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:0.3rem">Facilitator Only · GKG Confidential</div><div style="font-family:'Libre Baskerville',Georgia,serif;font-size:1.2rem;color:white;font-weight:700">${p.name} · Individual Feedback Conversation</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:0.2rem">60 minutes · 90 available if participant requests</div></div><div class="callout callout-purple" style="margin-bottom:1.25rem"><div class="clbl purple">60-Minute Session Structure</div>${[['0:00 to 0:08','Opening','Ask: "What was it like to read the report?" Listen only.'],['0:08 to 0:20','Strengths','What consistently shows up. What resonates. What might be underused.'],['0:20 to 0:38','Patterns','Where perspectives differ. Curiosity, not analysis.'],['0:38 to 0:50','Conditions','Conditions section gets its own time.'],['0:50 to 1:00','Commitment','One specific behavior. 90-day horizon.'],['Plus 30 opt.','Extension','If participant requests. Go deeper, not broader.']].map(([t,p2,n],i,arr)=>`<div style="display:flex;gap:0.85rem;padding:0.6rem 0;${i<arr.length-1?'border-bottom:1px solid var(--border)':''}opacity:${i===arr.length-1?'0.65':'1'}"><div style="width:90px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);padding-top:0.1rem;flex-shrink:0">${t}</div><div style="width:85px;font-size:0.85rem;color:var(--purple);font-weight:700;flex-shrink:0">${p2}</div><div style="font-size:0.85rem;color:var(--fg);line-height:1.55">${n}</div></div>`).join('')}</div><div class="step-row"><div class="step-num active" id="prep-s1n">1</div><div class="step-text"><strong>Open Claude</strong>: the prompt loads automatically. Hit send.</div></div>
+      <div class="step-row" style="margin-bottom:1.25rem"><div class="step-num idle">2</div><div class="step-text"><strong>Paste the response</strong> into the box below.</div></div>
+      <button class="claude-btn" style="margin-bottom:1.25rem" onclick="adminGenPrep('${aPid}')"><div class="cb-icon">C</div><span id="prep-inner">Open in Claude</span></button>
+      <div class="paste-zone-label" style="color:var(--purple)">Paste Claude's response here</div>
+      <div class="paste-zone" id="prep-paste-zone"><textarea id="prep-paste-ta" placeholder="Paste here after Claude responds..." oninput="adminPastePrep()"></textarea></div>
+      <div class="nav-row" style="margin-top:0.75rem"><div class="spacer"></div><button class="btn btn-ghost btn-sm" id="prep-copy" style="display:none" onclick="navigator.clipboard.writeText(document.getElementById('prep-paste-ta').value);toast('Brief copied')">Copy Brief</button></div></div>`;
+  }
+
+  h+=`</div></div>`;
+  document.getElementById('admin-main').innerHTML=h;
+}
+
+// REPORT GENERATION
+function buildSA(pid){const p=aPs[pid];const r=aRes.filter(r=>r.type==='self-assessment').slice(-1)[0];if(!r)return null;let s=`PARTICIPANT: ${p.name}\nTYPE: Self-Assessment\n\n=== RATINGS ===\n\n`;DOMAINS.forEach((d,di)=>{s+=d+':\n';SA_ITEMS.filter(it=>it.d===di).forEach(it=>{const v=r.ratings[it.id];s+=`  #${it.id}: ${it.text}\n  Rating: ${v!==undefined?SCALE[v]:'Not rated'}\n`;});s+='\n';});s+=`\n=== OPEN QUESTIONS ===\n\nQ1 (Leadership at its best):\n${r.openQ.q1||'(blank)'}\n\nQ2 (Least confident):\n${r.openQ.q2||'(blank)'}\n\nQ3 (Conditions):\n${r.openQ.q3||'(blank)'}`;return s;}
+function buildMR(pid){const p=aPs[pid];const mr=aRes.filter(r=>r.type==='multi-rater');if(!mr.length)return null;let s=`PARTICIPANT: ${p.name}\nTYPE: Multi-Rater\nRATER COUNT: ${mr.length}\n\n=== RATINGS ===\n\n`;DOMAINS.forEach((d,di)=>{s+=d+':\n';MR_ITEMS.filter(it=>it.d===di).forEach(it=>{const vals=mr.map(r=>r.ratings[it.id]).filter(v=>v!==undefined);const avg=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null;s+=`  #${it.id}: ${it.text}\n  Ratings: ${vals.map(v=>SCALE[v]).join(', ')||'none'} | Avg: ${avg!==null?SCALE[Math.round(avg)]+' ('+avg.toFixed(1)+')':'N/A'}\n`;});s+='\n';});s+='\n=== OPEN QUESTIONS ===\n';['q1','q2','q3'].forEach((q,qi)=>{s+=`\nQ${qi+1}:\n`;mr.forEach(r=>{if(r.openQ[q])s+=`[${r.raterGroup}]: ${r.openQ[q]}\n`;});});return s;}
+
+const SA_PROMPT=sum=>`You are a GKG Leadership Advisor preparing a Self-Assessment Reflection Profile for a TDEM leader. Tone: warm, direct, curious. Write in second person. Use paragraphs, not bullet lists. No em dashes. Under 600 words.\n\nData:\n${sum}\n\nWrite exactly these sections with these exact headers:\n\n**A NOTE BEFORE YOU READ**\nOne paragraph. Frame this as a self-observed snapshot, not a verdict. Note that the conversation ahead is where patterns become specific to their context.\n\n**WHAT YOU NOTICED ABOUT YOUR OWN PRACTICE**\n2-3 sentences synthesizing their open question responses. Ground it in what they actually said. No direct quotes.\n\n**WHERE YOU SEE STRENGTH**\n2-3 behavioral patterns they rated consistently high. Name them specifically. One sentence on why they matter.\n\n**WHERE YOU ARE LESS CONSISTENT**\n2-3 patterns rated lower. Name without judgment. Distinguish between developmental edge and conditions-driven constraint where the data supports it.\n\n**WHAT THE CONDITIONS TELL US**\nSynthesize Q3. Frame as context, not excuse. If Q3 was blank, write one sentence acknowledging conditions were not named but may still be present.\n\n**ONE QUESTION TO SIT WITH**\nOne specific, curious question from the full picture. Not generic. No preamble.`;
+
+const MR_PROMPT=sum=>`You are a GKG Leadership Advisor preparing a Multi-Rater LPI report for a TDEM supervisor. Developmental only. Tone: warm, direct, curious. Write in second person. Paragraphs not bullet lists. No em dashes. Under 650 words.\n\nData:\n${sum}\n\nReporting logic: Primary view is Self vs. Others. A pattern is noted only when at least 3 raters show the same direction. If data is thin, say so honestly.\n\nWrite exactly these sections with these exact headers:\n\n**WHAT PEOPLE CONSISTENTLY SEE**\n2-4 behaviors rated Often or Consistently across rater groups. 3-5 sentences. Reliable strengths.\n\n**WHERE PERSPECTIVES DIFFER**\n1-3 items where self vs. others diverge. One sentence naming it, one framing as a question not a deficit. If none, say so.\n\n**DEVELOPMENTAL EDGES**\n1-3 behaviors rated Rarely or Sometimes. Frame as opportunity not gap.\n\n**WHAT PEOPLE ARE SAYING**\nQ1 themes (3-4 sentences). Q2 themes (2-3 sentences). No direct quotes. Honest but constructive.\n\n**WHAT THE CONDITIONS TELL US**\nQ3 as organizational data. "Raters noted..." language. If nothing named, say so.\n\n**ONE QUESTION TO SIT WITH**\nOne specific curious question for this person. Not generic. No preamble.`;
+
+function adminOpenClaude(type,pid){
+  const isSA=type==='sa';
+  const sum=isSA?buildSA(pid):buildMR(pid);
+  if(!sum){toast('No responses to generate from',3000);return;}
+  const prompt=isSA?SA_PROMPT(sum):MR_PROMPT(sum);
+  const url='https://claude.ai/new?q='+encodeURIComponent(prompt);
+  const inn=document.getElementById(type+'-gen-inner');
+  inn.textContent='Opening Claude...';
+  window.open(url,'claude-gen','width=860,height=700,left=100,top=80,resizable=yes,scrollbars=yes');
+  setTimeout(()=>{
+    inn.textContent='Open in Claude again';
+    const s1=document.getElementById(type+'-s1n');const s2=document.getElementById(type+'-s2n');const s2t=document.getElementById(type+'-s2t');
+    if(s1){s1.className='step-num done';s1.textContent='✓';}
+    if(s2){s2.className='step-num active';}
+    if(s2t){s2t.innerHTML='<strong>Paste the response</strong> into the box on the right.';}
+  },1200);
+}
+function adminPasteRender(type){
+  const ta=document.getElementById(type+'-paste-ta');
+  const zone=document.getElementById(type+'-paste-zone');
+  const txt=ta.value.trim();
+  if(!txt)return;
+  zone.classList.add('has-content');
+  const col=type==='sa'?'teal':'purple';
+  const rb=document.getElementById(type+'-rb');
+  renderBrief(rb,txt,col);
+  document.getElementById(type+'-copy-btn').style.display='inline-flex';
+  document.getElementById(type+'-print-btn').style.display='inline-flex';
+  const s2=document.getElementById(type+'-s2n');
+  if(s2){s2.className='step-num done';s2.textContent='✓';}
+}
+
+function adminGenPrep(pid){
+  const p=aPs[pid];
+  if(!aRes.length){toast('No responses yet',3000);return;}
+  const saSum=aRes.some(r=>r.type==='self-assessment')?buildSA(pid):'';
+  const mrSum=aRes.some(r=>r.type==='multi-rater')?buildMR(pid):'';
+  const sum=[saSum,mrSum].filter(Boolean).join('\n\n---\n\n');
+  const prompt=`In 200 words or fewer, brief a GKG Leadership Advisor preparing for a 60-minute Individual Feedback Conversation with ${p.name}. Colleague-to-colleague tone. No em dashes. Cover: (1) the 1-2 most important patterns, (2) one thing to handle with care, (3) whether conditions need dedicated time, (4) a suggested opening question.\n\nData:\n${sum}`;
+  const url='https://claude.ai/new?q='+encodeURIComponent(prompt);
+  window.open(url,'claude-prep','width=860,height=700,left=100,top=80,resizable=yes,scrollbars=yes');
+  document.getElementById('prep-inner').textContent='Open in Claude again';
+  document.getElementById('prep-copy').style.display='inline-flex';
+}
+
+function adminDownloadPDF(type, participantName, color) {
+  const rb = document.getElementById(type + '-rb');
+  if (!rb) return;
+
+  const isTeal = color === 'teal';
+  const accent  = isTeal ? '#0d9488' : '#7c3aed';
+  const accentDk = isTeal ? '#0f766e' : '#6d28d9';
+  const tierLabel = isTeal ? 'LPI: Self-Assessment' : 'LPI: Multi-Rater';
+  const dateStr = new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
+
+  // Collect sections from the live preview
+  const sectionEls = Array.from(rb.querySelectorAll('.rs'));
+  const sectionsHTML = sectionEls.map(sec => {
+    const lbl = (sec.querySelector('.rs-lbl') || {}).textContent?.trim() || '';
+    const txt = (sec.querySelector('.rs-txt') || {}).textContent?.trim() || '';
+    if (!lbl && !txt) return '';
+    return `
+      <div class="section">
+        ${lbl ? `<div class="sec-heading">${lbl.toUpperCase()}</div>` : ''}
+        ${txt ? `<p class="sec-body">${txt.replace(/\n/g, '<br>')}</p>` : ''}
+      </div>`;
+  }).join('');
+
+  const printHTML = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${tierLabel}: ${participantName}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Libre+Baskerville:wght@400;700&display=swap');
+  @page {
+    size: letter;
+    margin: 0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: white;
+    color: #1a1825;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(135deg, ${accent} 0%, ${accentDk} 100%);
+    padding: 48px 56px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+  .cover-tier {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 14px;
+  }
+  .cover-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .cover-date {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+  }
+  .cover-rule {
+    margin-top: 24px;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    padding: 40px 56px 60px;
+  }
+
+  .section {
+    break-inside: avoid;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #e2e0ec;
+  }
+  .section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .sec-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    color: ${accent};
+    break-after: avoid;
+  }
+  .sec-heading::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 14px;
+    background: ${accent};
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .sec-body {
+    font-size: 11px;
+    line-height: 1.85;
+    color: #3a3850;
+    max-width: 100%;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 36px;
+    background: #f5f3f0;
+    border-top: 1px solid #dddbe8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 56px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    color: #9b98ad;
+    letter-spacing: 0.5px;
+  }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="cover-tier">${tierLabel} &nbsp;&middot;&nbsp; GKG Draft</div>
+    <div class="cover-name">${participantName}</div>
+    <div class="cover-date">${dateStr}</div>
+    <hr class="cover-rule">
+  </div>
+  <div class="content">
+    ${sectionsHTML}
+  </div>
+  <div class="doc-footer">
+    <span>TDEM Leadership Academy &nbsp;&middot;&nbsp; Golden Key Group &nbsp;&middot;&nbsp; Confidential &nbsp;&middot;&nbsp; Developmental Use Only</span>
+  </div>
+  <script>
+    // Wait for fonts then print
+    document.fonts.ready.then(() => {
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => window.close(), 1000);
+      }, 400);
+    });
+  <\/script>
+</body>
+</html>`;
+
+  const w = window.open('', '_blank', 'width=900,height=700');
+  w.document.write(printHTML);
+  w.document.close();
+}
+
+function adminPastePrep(){
+  const ta=document.getElementById('prep-paste-ta');
+  const zone=document.getElementById('prep-paste-zone');
+  if(ta.value.trim()){zone.classList.add('has-content');document.getElementById('prep-copy').style.display='inline-flex';}
+  const s1=document.getElementById('prep-s1n');if(s1){s1.className='step-num done';s1.textContent='✓';}
+}
+function renderBrief(container,text,col){
+  const parts=text.split(/\*\*([A-Z][A-Z\s]+)\*\*/g).filter(s=>s.trim());
+  let html='';let i=0;
+  while(i<parts.length){
+    const chunk=parts[i].trim();
+    if(chunk===chunk.toUpperCase()&&chunk.length<80){
+      const body=parts[i+1]?parts[i+1].trim():'';
+      html+=`<div class="rs"><div class="rs-lbl ${col}">${chunk}</div><div class="rs-txt">${body}</div></div>`;
+      i+=2;
+    }else{html+=`<div class="rs"><div class="rs-txt">${chunk}</div></div>`;i++;}
+  }
+  container.innerHTML=html||`<div class="rs"><div class="rs-txt">${text}</div></div>`;
+}
+
+function adminExport(){
+  (async()=>{try{
+    const data=await DB.exportAll();
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='tdem-lpi-backup-'+new Date().toISOString().split('T')[0]+'.json';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);toast('Cloud backup downloaded');
+  }catch(e){
+    console.warn('Cloud export failed, using local:',e);
+    const data={};st.keys().forEach(k=>{data[k]=st.get(k);});const blob=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='tdem-lpi-backup-'+new Date().toISOString().split('T')[0]+'.json';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);toast('Local backup downloaded');
+  }})();}
+function adminImport(file){if(!file||!confirm(`Restore from "${file.name}"? This will overwrite existing data.`))return;file.text().then(text=>{const p=JSON.parse(text);if(!p.data)throw new Error('Invalid file');Object.entries(p.data).forEach(([k,v])=>st.set(k,v));adminLoad();toast('Data restored');}).catch(e=>alert('Restore failed: '+e.message));}
+
+// SPOTLIGHT
+document.addEventListener('mousemove',e=>{document.getElementById('spotlight').style.setProperty('--mx',e.clientX+'px');document.getElementById('spotlight').style.setProperty('--my',e.clientY+'px');});
+
+// HASH ROUTING (Multi-Rater deep links)
+function parseHash(){const hash=window.location.hash;if(hash.startsWith('#mr/')){const parts=hash.replace('#mr/','').split('/');mrPid=parts[0]||'';mrPname=decodeURIComponent(parts[1]||'Participant');document.getElementById('mr-pname').textContent=mrPname;go('v-mr-terms');}else if(hash.startsWith('#self/')){const parts=hash.replace('#self/','').split('/');saPid=parts[0]||'';saPname=decodeURIComponent(parts[1]||'');go('v-sa-terms');}}
+window.addEventListener('hashchange',parseHash);
+parseHash();
+
+// Listen for navigation commands from parent (walkthrough guide)
+window.addEventListener('message', e => {
+  if (!e.data || !e.data.type) return;
+  const d = e.data;
+
+  if (d.type === 'navigate') {
+    go(d.view);
+  }
+
+  if (d.type === 'demo-setup') {
+    // Create a demo participant with sample data if none exists
+    let ps = st.get('participants') || {};
+    let demoPid = Object.keys(ps).find(k => ps[k].name === 'Alex Morgan (Demo)');
+    if (!demoPid) {
+      demoPid = uid();
+      ps[demoPid] = {name:'Alex Morgan (Demo)', id:demoPid, createdAt:new Date().toISOString()};
+      st.set('participants', ps);
+      // Add sample SA response
+      const saRatings = {};
+      SA_ITEMS.forEach(it => { saRatings[it.id] = Math.floor(Math.random()*3)+2; });
+      const saSub = {id:uid(), submittedAt:new Date().toISOString(), type:'self-assessment',
+        participantName:'Alex Morgan (Demo)', pid:demoPid,
+        ratings:saRatings, openQ:{
+          q1:'During a critical infrastructure failure last quarter, I stayed focused and kept the team aligned on priorities. I made three quick decisions about resource allocation that turned out well, and I think it was because I trusted my read of the situation rather than waiting for complete information.',
+          q2:'I struggle most with delegation. When things get stressful I tend to pull work back toward myself rather than trusting the team to handle it. I notice this especially with newer team members.',
+          q3:'Our org has been through two reorganizations in 18 months, which makes it harder to build the kind of stable team relationships that support good delegation.'}};
+      st.set('responses:'+demoPid, [saSub]);
+    }
+    // Load admin, select the demo participant
+    aPs = ps;
+    adminLoad();
+    go('v-admin');
+    setTimeout(() => { adminSel(demoPid); }, 200);
+  }
+
+  if (d.type === 'admin-tab') {
+    aTab = d.tab;
+    adminRM();
+  }
+
+  if (d.type === 'admin-select-first') {
+    adminLoad();
+    const firstPid = Object.keys(aPs)[0];
+    if (firstPid) adminSel(firstPid);
+  }
+});
+</script>
+</body>
+</html>
