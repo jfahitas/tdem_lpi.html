@@ -608,15 +608,44 @@ let aPs={},aPid=null,aRes=[],aTab='responses';
 function adminLoad(){
   const emptyMsg='<div style="text-align:center;padding:5rem 0;color:var(--muted)"><div style="font-size:2rem;opacity:0.3;margin-bottom:0.85rem">&#8678;</div><div>Select a participant</div></div>';
   document.getElementById('admin-main').innerHTML=emptyMsg;
-  // Try Supabase first, fall back to localStorage
-  (async()=>{try{aPs=await DB.listParticipants();sbOk=true;st.set('participants',aPs);adminRSB();console.log('Loaded from cloud:',Object.keys(aPs).length,'participants');}catch(e){console.warn('Cloud unavailable, using local:',e);sbOk=false;aPs=st.get('participants')||{};adminRSB();}})();
+  (async()=>{try{
+    aPs=await DB.listParticipants();sbOk=true;st.set('participants',aPs);
+    // Check for new responses across all participants
+    let totalNew=0;
+    for(const pid of Object.keys(aPs)){
+      try{
+        const resp=await DB.getResponses(pid);
+        const count=resp.length;
+        localStorage.setItem('tdem_lpi_count:'+pid,String(count));
+        const seen=parseInt(localStorage.getItem('tdem_lpi_seen:'+pid)||'0');
+        if(count>seen)totalNew+=(count-seen);
+      }catch(e){}
+    }
+    adminRSB();
+    if(totalNew>0)toast(totalNew+' new response'+(totalNew!==1?'s':'')+' since your last visit');
+    console.log('Loaded from cloud:',Object.keys(aPs).length,'participants');
+  }catch(e){console.warn('Cloud unavailable, using local:',e);sbOk=false;aPs=st.get('participants')||{};adminRSB();}})();
 }
-function adminRSB(){const l=document.getElementById('admin-p-list');const arr=Object.values(aPs);if(!arr.length){l.innerHTML='<div style="font-size:0.82rem;color:var(--muted-light);font-style:italic">No participants yet.</div>';return;}l.innerHTML=arr.map(p=>`<button class="pb${aPid===p.id?' active':''}" onclick="adminSel('${p.id}')">${p.name}</button>`).join('');}
+function adminRSB(){const l=document.getElementById('admin-p-list');const arr=Object.values(aPs);if(!arr.length){l.innerHTML='<div style="font-size:0.82rem;color:var(--muted-light);font-style:italic">No participants yet.</div>';return;}
+  l.innerHTML=arr.map(p=>{
+    const seen=parseInt(localStorage.getItem('tdem_lpi_seen:'+p.id)||'0');
+    const current=parseInt(localStorage.getItem('tdem_lpi_count:'+p.id)||'0');
+    const isNew=current>seen;
+    return`<button class="pb${aPid===p.id?' active':''}" onclick="adminSel('${p.id}')" style="position:relative">${p.name}${isNew?'<span style="position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 6px rgba(234,88,12,0.6)"></span>':''}</button>`;
+  }).join('');}
 function adminAdd(){const name=document.getElementById('admin-new-name').value.trim();if(!name)return;const pid=uid();aPs[pid]={name,id:pid,createdAt:new Date().toISOString()};st.set('participants',aPs);document.getElementById('admin-new-name').value='';adminRSB();
   (async()=>{try{await DB.addParticipant(pid,name);toast('Participant added (synced)');}catch(e){console.warn('Cloud save failed:',e);toast('Participant added (local only)');}})();}
-function adminSel(pid){aPid=pid;aTab='responses';adminRSB();
-  // Try Supabase first
-  (async()=>{try{aRes=await DB.getResponses(pid);st.set('responses:'+pid,aRes);adminRM();console.log('Loaded',aRes.length,'responses from cloud');}catch(e){console.warn('Cloud unavailable:',e);aRes=st.get('responses:'+pid)||[];adminRM();}})();}
+function adminSel(pid){aPid=pid;aTab='responses';
+  // Mark as seen
+  const count=localStorage.getItem('tdem_lpi_count:'+pid)||'0';
+  localStorage.setItem('tdem_lpi_seen:'+pid,count);
+  adminRSB();
+  (async()=>{try{aRes=await DB.getResponses(pid);st.set('responses:'+pid,aRes);
+    // Update counts
+    localStorage.setItem('tdem_lpi_count:'+pid,String(aRes.length));
+    localStorage.setItem('tdem_lpi_seen:'+pid,String(aRes.length));
+    adminRSB();adminRM();console.log('Loaded',aRes.length,'responses from cloud');
+  }catch(e){console.warn('Cloud unavailable:',e);aRes=st.get('responses:'+pid)||[];adminRM();}})();}
 function adminTab(k){aTab=k;adminRM();}
 
 function adminRM(){
@@ -626,13 +655,109 @@ function adminRM(){
   const base=window.location.href.split('#')[0];
   const mrLink=base+'#mr/'+aPid+'/'+encodeURIComponent(p.name);
   const saLink=base+'#self/'+aPid+'/'+encodeURIComponent(p.name);
-  const tabs=[{k:'responses',l:'Responses'},{k:'sa-report',l:'Self-Assessment Report Brief'},{k:'mr-report',l:'Multi-Rater Report Brief'},{k:'prep',l:'Advisor Prep'}];
+  const tabs=[{k:'responses',l:'Responses'},{k:'full-report',l:'Full Report'},{k:'sa-report',l:'Self-Assessment Report Brief'},{k:'mr-report',l:'Multi-Rater Report Brief'},{k:'prep',l:'Advisor Prep'}];
   let h=`<div><div style="margin-bottom:1.25rem"><div class="h2" style="margin-bottom:0.5rem">${p.name}</div><div style="display:flex;gap:0.4rem;flex-wrap:wrap">${saR.length?`<span class="pill teal">Self-Assessment: ${saR.length}</span>`:'<span class="pill orange">No self-assessment yet</span>'}${mrR.length?`<span class="pill">Multi-Rater: ${mrR.length} rater${mrR.length!==1?'s':''}</span>`:''}</div></div><div class="tabs">${tabs.map((t,i)=>`<button class="tab${aTab===t.k?' active':''}" style="${i===0?'border-radius:10px 0 0 0':i===tabs.length-1?'border-radius:0 10px 0 0':''}" onclick="adminTab('${t.k}')">${t.l}</button>`).join('')}</div><div class="tc">`;
 
   if(aTab==='responses'){
     h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem"><div class="callout callout-teal" style="margin-bottom:0"><div class="clbl teal">Self-Assessment link</div><div class="body-sm" style="margin-bottom:0.5rem">Send to ${p.name}:</div><code style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;word-break:break-all;display:block;background:rgba(255,255,255,0.8);border:1px solid var(--border);border-radius:4px;padding:0.45rem 0.65rem;color:var(--fg-soft)">${saLink}</code><button class="btn btn-ghost btn-sm" style="margin-top:0.5rem" onclick="navigator.clipboard.writeText('${saLink}');toast('Self-Assessment link copied')">Copy</button></div><div class="callout callout-purple" style="margin-bottom:0"><div class="clbl purple">Multi-Rater link</div><div class="body-sm" style="margin-bottom:0.5rem">Share with raters:</div><code style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;word-break:break-all;display:block;background:rgba(255,255,255,0.8);border:1px solid var(--border);border-radius:4px;padding:0.45rem 0.65rem;color:var(--fg-soft)">${mrLink}</code><button class="btn btn-ghost btn-sm" style="margin-top:0.5rem" onclick="navigator.clipboard.writeText('${mrLink}');toast('MR link copied')">Copy</button></div></div>`;
     if(!aRes.length){h+=`<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.9rem">No responses yet.</div>`;}
     else{h+=aRes.map(r=>{const its=r.type==='self-assessment'?SA_ITEMS:MR_ITEMS;return`<div style="padding:1rem 1.1rem;background:rgba(255,255,255,0.6);border:1px solid var(--border);border-radius:10px;margin-bottom:0.75rem"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem"><span class="pill${r.type==='self-assessment'?' teal':''}">${r.type==='self-assessment'?(r.participantName||'Self-Assessment'):(r.raterName||'Rater')}</span><div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted-light)">${new Date(r.submittedAt).toLocaleDateString()}</div></div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.4rem;margin-bottom:0.75rem">${DOMAINS.map((d,di)=>{const vals=its.filter(it=>it.d===di).map(it=>r.ratings[it.id]).filter(v=>v!==undefined);const avg=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null;const lbl=avg!==null?SCALE[Math.round(avg)]:'N/A';return`<div style="text-align:center;padding:0.5rem 0.25rem;background:rgba(255,255,255,0.5);border:1px solid var(--border);border-radius:6px"><div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.2rem">D${di+1}</div><div style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:600;color:var(--fg)">${lbl}</div></div>`;}).join('')}</div>${r.openQ.q1?`<div style="font-size:0.82rem;color:var(--fg-soft);line-height:1.6;border-top:1px solid var(--border);padding-top:0.6rem">"${r.openQ.q1.substring(0,120)}${r.openQ.q1.length>120?'...':''}"</div>`:''}</div>`;}).join('');}
+  }
+
+  if(aTab==='full-report'){
+    if(!aRes.length){h+=`<div style="text-align:center;padding:2.5rem;color:var(--muted);font-size:0.9rem">No responses yet.</div>`;}
+    else{
+      const sa=saR.length?saR[saR.length-1]:null;
+      const barColors=['#dc2626','#ea580c','#ca8a04','#0d9488','#16a34a'];
+      const barWidths=[10,30,55,78,100];
+
+      // Domain summary cards
+      h+=`<div style="margin-bottom:1.75rem">`;
+      DOMAINS.forEach((d,di)=>{
+        const saItems=SA_ITEMS.filter(it=>it.d===di);
+        const saVals=sa?saItems.map(it=>sa.ratings[it.id]).filter(v=>v!==undefined):[];
+        const saAvg=saVals.length?saVals.reduce((a,b)=>a+b,0)/saVals.length:null;
+        const saLabel=saAvg!==null?SCALE[Math.round(saAvg)]:'N/A';
+
+        // MR averages for this domain
+        const mrItems=MR_ITEMS.filter(it=>it.d===di);
+        const mrAllVals=mrR.flatMap(r=>mrItems.map(it=>r.ratings[it.id]).filter(v=>v!==undefined));
+        const mrAvg=mrAllVals.length?mrAllVals.reduce((a,b)=>a+b,0)/mrAllVals.length:null;
+        const mrLabel=mrAvg!==null?SCALE[Math.round(mrAvg)]:'N/A';
+
+        h+=`<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:0.75rem">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.85rem;flex-wrap:wrap;gap:0.5rem">
+            <div style="font-weight:700;font-size:0.95rem;color:var(--fg)">${d}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.06em">Domain ${di+1}</div>
+          </div>`;
+
+        // Self row
+        if(sa){
+          const saCol=barColors[Math.round(saAvg)]||'var(--muted)';
+          h+=`<div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem">
+            <div style="width:50px;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--teal);font-weight:600;flex-shrink:0">Self</div>
+            <div style="flex:1;height:8px;background:rgba(26,24,37,0.06);border-radius:4px;overflow:hidden"><div style="height:100%;width:${barWidths[Math.round(saAvg)]}%;background:${saCol};border-radius:4px"></div></div>
+            <div style="width:80px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:600;color:var(--fg);text-align:right">${saLabel}</div>
+          </div>`;
+        }
+
+        // Others row (MR average)
+        if(mrR.length){
+          const mrCol=mrAvg!==null?barColors[Math.round(mrAvg)]:'var(--muted)';
+          h+=`<div style="display:flex;align-items:center;gap:0.75rem">
+            <div style="width:50px;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--purple);font-weight:600;flex-shrink:0">Others</div>
+            <div style="flex:1;height:8px;background:rgba(26,24,37,0.06);border-radius:4px;overflow:hidden"><div style="height:100%;width:${mrAvg!==null?barWidths[Math.round(mrAvg)]:0}%;background:${mrCol};border-radius:4px"></div></div>
+            <div style="width:80px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:600;color:var(--fg);text-align:right">${mrLabel}</div>
+          </div>`;
+        }
+        h+=`</div>`;
+      });
+      h+=`</div>`;
+
+      // Item-level detail
+      h+=`<div class="clbl purple" style="margin-bottom:0.75rem">Item-Level Detail</div>`;
+      DOMAINS.forEach((d,di)=>{
+        h+=`<div style="margin-bottom:1.5rem"><div style="font-weight:600;font-size:0.88rem;color:var(--fg);margin-bottom:0.65rem;padding-bottom:0.5rem;border-bottom:2px solid var(--border)">${d}</div>`;
+        const items=SA_ITEMS.filter(it=>it.d===di);
+        items.forEach(it=>{
+          const saVal=sa?sa.ratings[it.id]:undefined;
+          const mrVals=mrR.map(r=>r.ratings[it.id]).filter(v=>v!==undefined);
+          const mrAvgVal=mrVals.length?mrVals.reduce((a,b)=>a+b,0)/mrVals.length:null;
+
+          h+=`<div style="padding:0.75rem 0.85rem;border:1px solid var(--border);border-radius:8px;margin-bottom:0.45rem;background:rgba(255,255,255,0.55)">
+            <div style="font-size:0.85rem;color:var(--fg);line-height:1.5;margin-bottom:0.55rem"><span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted-light);margin-right:0.4rem">#${it.id}</span>${it.text}</div>
+            <div style="display:flex;gap:1.5rem;flex-wrap:wrap">`;
+          if(saVal!==undefined){
+            const col=barColors[saVal];
+            h+=`<div style="display:flex;align-items:center;gap:0.5rem"><span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal);font-weight:600;width:36px">Self</span><div style="width:80px;height:6px;background:rgba(26,24,37,0.06);border-radius:3px;overflow:hidden"><div style="height:100%;width:${barWidths[saVal]}%;background:${col};border-radius:3px"></div></div><span style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:600;color:var(--fg)">${SCALE[saVal]}</span></div>`;
+          }
+          if(mrAvgVal!==null){
+            const col=barColors[Math.round(mrAvgVal)];
+            h+=`<div style="display:flex;align-items:center;gap:0.5rem"><span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--purple);font-weight:600;width:36px">Others</span><div style="width:80px;height:6px;background:rgba(26,24,37,0.06);border-radius:3px;overflow:hidden"><div style="height:100%;width:${barWidths[Math.round(mrAvgVal)]}%;background:${col};border-radius:3px"></div></div><span style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:600;color:var(--fg)">${SCALE[Math.round(mrAvgVal)]}</span><span style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted)">(n=${mrVals.length})</span></div>`;
+          }
+          h+=`</div></div>`;
+        });
+        h+=`</div>`;
+      });
+
+      // Open questions
+      h+=`<div class="clbl orange" style="margin-bottom:0.75rem;margin-top:1.5rem">Open Question Responses</div>`;
+      const allQ=[...(sa?[{...sa,label:sa.participantName||'Self-Assessment',color:'teal'}]:[]),...mrR.map(r=>({...r,label:r.raterName||'Rater',color:'purple'}))];
+      ['q1','q2','q3'].forEach((q,qi)=>{
+        const qLabels=['At their best as a leader','Least confident or most inconsistent','Organizational conditions or constraints'];
+        h+=`<div style="margin-bottom:1.25rem"><div style="font-weight:600;font-size:0.9rem;color:var(--fg);margin-bottom:0.65rem">${qLabels[qi]}</div>`;
+        allQ.forEach(r=>{
+          const txt=r.openQ?.[q]||r.openQ?.[q];
+          if(txt){
+            h+=`<div style="padding:0.75rem 1rem;background:rgba(255,255,255,0.6);border:1px solid var(--border);border-left:3px solid var(--${r.color});border-radius:8px;margin-bottom:0.5rem">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--${r.color});font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.35rem">${r.label}</div>
+              <div style="font-size:0.88rem;color:var(--fg-soft);line-height:1.65">${txt}</div>
+            </div>`;
+          }
+        });
+        h+=`</div>`;
+      });
+    }
   }
 
   if(aTab==='sa-report'||aTab==='mr-report'){
