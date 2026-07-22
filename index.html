@@ -281,6 +281,11 @@
     border-color: var(--orange-border);
     border-left-color: var(--orange);
   }
+  .info-box.green {
+    background: var(--green-soft);
+    border-color: var(--green-border);
+    border-left-color: var(--green);
+  }
   .info-box .info-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.72rem; color: var(--primary);
@@ -288,6 +293,7 @@
     text-transform: uppercase; letter-spacing: 0.1em;
   }
   .info-box.amber .info-label { color: var(--orange); }
+  .info-box.green .info-label { color: var(--green); }
   .info-box p { font-size: 0.88rem; color: var(--fg); line-height: 1.65; }
 
   /* ===== Survey-specific ===== */
@@ -556,30 +562,32 @@ const DOMAIN_NOTES = [
   null,
 ];
 const ITEMS = [
-  { id: 1, d: 0, text: "Stays calm and thinks clearly when information is incomplete or the situation is rapidly changing." },
-  { id: 2, d: 0, text: "Recognizes when a situation needs people to change how they work together, not just a technical fix." },
-  { id: 3, d: 0, text: "Makes timely decisions without waiting for perfect information, then adjusts as new information becomes available." },
-  { id: 4, d: 0, text: "Makes decisions in a way that reflects clear principles, even when the situation is ambiguous or pressured." },
-  { id: 5, d: 1, text: "When under stress, adjusts in ways that help them respond rather than react." },
-  { id: 6, d: 1, text: "Maintains composure in high-pressure situations in a way that helps - not hinders - the people around them." },
-  { id: 7, d: 1, text: "Adjusts their communication approach based on who they are talking with and what the situation requires." },
-  { id: 8, d: 1, text: "Sets a tone where high performance does not require chronic overextension.", hint: "This is about pace over time, not a single hard day or activation. Look for whether periods of high intensity are followed by real recovery - a lighter week, a stand-down day, protected time off - rather than one demanding stretch rolling straight into the next with no letup." },
-  { id: 9, d: 2, text: "Leads the team rather than doing the work themselves - delegates, enables, and gets out of the way." },
-  { id: 10, d: 2, text: "Creates space for people to raise concerns, ask questions, or disagree without fear of negative consequences." },
-  { id: 11, d: 2, text: "Asks questions and listens to understand before moving to solutions." },
-  { id: 12, d: 2, text: "Builds the judgment and capability of others rather than solving problems for them." },
-  { id: 13, d: 3, text: "Keeps attention on the highest priorities even when other demands compete for time." },
-  { id: 14, d: 3, text: "Builds and maintains relationships with people outside their direct team or division." },
-  { id: 15, d: 3, text: "Gets things done through cooperation and influence, not just through positional authority." },
-  { id: 16, d: 3, text: "Connects the team's day-to-day work to the broader mission in ways people can understand." },
-  { id: 17, d: 4, text: "Returns to steady, effective leadership after setbacks, activations, or sustained high-demand periods." },
-  { id: 18, d: 4, text: "Pays attention to the wellbeing of their team - not just task completion." },
-  { id: 19, d: 4, text: "Demonstrates that taking care of oneself and one's team is a leadership responsibility, not a weakness." },
-  { id: 20, d: 4, text: "Creates space for the team to process and recover after difficult work, not just move immediately to the next thing." },
+  { id: 1, d: 0, text: "Stays calm and thinks clearly when information is incomplete or the situation is rapidly changing.", saText: "I stay calm and think clearly when information is incomplete or the situation is rapidly changing." },
+  { id: 2, d: 0, text: "Recognizes when a situation needs people to change how they work together, not just a technical fix.", saText: "I recognize when a situation needs people to change how we work together, not just a technical fix.", saNote: "This item is about how you read a situation rather than what you do. A lower rating may reflect limited opportunity to observe it, not absent capability." },
+  { id: 3, d: 0, text: "Makes timely decisions without waiting for perfect information, then adjusts as new information becomes available.", saText: "I make timely decisions without waiting for perfect information, then adjust as new information becomes available." },
+  { id: 4, d: 0, text: "Makes decisions in a way that reflects clear principles, even when the situation is ambiguous or pressured.", saText: "I make decisions in a way that reflects clear principles, even when the situation is ambiguous or pressured." },
+  { id: 5, d: 1, text: "When under stress, adjusts in ways that help them respond rather than react.", saText: "When under stress, I adjust in ways that help me respond rather than react." },
+  { id: 6, d: 1, text: "Maintains composure in high-pressure situations in a way that helps - not hinders - the people around them.", saText: "I maintain composure in high-pressure situations in a way that helps, not hinders, the people around me." },
+  { id: 7, d: 1, text: "Adjusts their communication approach based on who they are talking with and what the situation requires.", saText: "I adjust my communication approach based on who I am talking with and what the situation requires." },
+  { id: 8, d: 1, text: "Sets a tone where high performance does not require chronic overextension.", hint: "This is about pace over time, not a single hard day or activation. Look for whether periods of high intensity are followed by real recovery - a lighter week, a stand-down day, protected time off - rather than one demanding stretch rolling straight into the next with no letup.", saText: "I take visible steps to protect my own recovery time and my team's, rather than treating overextension as the expected norm." },
+  { id: 9, d: 2, text: "Leads the team rather than doing the work themselves - delegates, enables, and gets out of the way.", saText: "I lead through others rather than doing the work myself: I delegate, enable, and get out of the way." },
+  { id: 10, d: 2, text: "Creates space for people to raise concerns, ask questions, or disagree without fear of negative consequences.", saText: "I create space for people to raise concerns, ask questions, or disagree without fear of negative consequences." },
+  { id: 11, d: 2, text: "Asks questions and listens to understand before moving to solutions.", saText: "I ask questions and listen to understand before moving to solutions." },
+  { id: 12, d: 2, text: "Builds the judgment and capability of others rather than solving problems for them.", saText: "I build the judgment and capability of others rather than solving problems for them." },
+  { id: 13, d: 3, text: "Keeps attention on the highest priorities even when other demands compete for time.", saText: "I distinguish between what is urgent and what is actually important, and direct my attention accordingly." },
+  { id: 14, d: 3, text: "Builds and maintains relationships with people outside their direct team or division.", saText: "I build and maintain relationships with people outside my direct team or division." },
+  { id: 15, d: 3, text: "Gets things done through cooperation and influence, not just through positional authority.", saText: "I get things done through cooperation and influence, not just positional authority." },
+  { id: 16, d: 3, text: "Connects the team's day-to-day work to the broader mission in ways people can understand.", saText: "I connect my team's day-to-day work to the broader mission in ways people can understand." },
+  { id: 17, d: 4, text: "Returns to steady, effective leadership after setbacks, activations, or sustained high-demand periods.", saText: "I return to steady, effective leadership after setbacks, high-demand periods, or difficult sustained work." },
+  { id: 18, d: 4, text: "Pays attention to the wellbeing of their team - not just task completion.", saText: "I pay attention to the wellbeing of my team, not just task completion." },
+  { id: 19, d: 4, text: "Demonstrates that taking care of oneself and one's team is a leadership responsibility, not a weakness.", saText: "I demonstrate that taking care of myself and my team is a leadership responsibility, not a weakness." },
+  { id: 20, d: 4, text: "Creates space for the team to process and recover after difficult work, not just move immediately to the next thing.", saText: "I create space for my team to process and recover after difficult work, not just move immediately to the next thing." },
 ];
 const RATER_GROUPS = ["Self", "Supervisor", "Peer", "Direct Report", "External Partner"];
 const ADMIN_CODE = "GKG2026";  // <-- change this to whatever you want
-const MIN_CHARS = 80;
+const MIN_CHARS = 80;   // Multi-rater open questions
+const SELF_MIN_CHARS = 60;  // Self-assessment open questions
+function curMinChars() { return surveyState.raterGroup === "Self" ? SELF_MIN_CHARS : MIN_CHARS; }
 
 // ── Supabase config ─────────────────────────────────────────────────────────
 const SUPABASE_URL = "https://tadkzdvbqbwqlcgbcrij.supabase.co";
@@ -786,11 +794,19 @@ function viewLanding() {
             <span>Confidential · Developmental</span>
           </div>
           <h1 style="margin-bottom: 0.85rem;">Leadership Practice Inventory</h1>
-          <p class="hero-sub">A supervisory leadership feedback tool developed by Golden Key Group for the TDEM Leadership Academy.</p>
+          <p class="hero-sub">A developmental assessment of leadership practice across five domains. Two tiers, one framework: LPI: Self-Assessment for the Basic Academy, and LPI: Multi-Rater for the Advanced Academy.</p>
           <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-green" onclick="navigate('/preview-self')">Preview Self-Assessment</button>
             <button class="btn btn-primary" onclick="navigate('/preview-survey')">Preview Rater Survey</button>
             <button class="btn btn-ghost" onclick="navigate('/preview-nominate')">Preview Nomination Form</button>
           </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 1.25rem;">
+          <div class="info-label" style="color: var(--primary); font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem;">A note on the word leadership</div>
+          <p style="font-family: 'Libre Baskerville', Georgia, serif; font-size: 0.93rem; line-height: 1.8; color: var(--fg-soft); font-style: italic;">
+            Leadership, as we use the word here, is not a title or a position; it is a practice. It is the ongoing work of making decisions under uncertainty, enabling others to do their best work, and sustaining both yourself and your team through the demands of the mission. You do not have it or lack it. You do it, more or less effectively, depending on conditions, context, and the habits you have built over time.
+          </p>
         </div>
 
         <div class="card">
@@ -1069,18 +1085,30 @@ function renderSurvey() {
   const s = surveyState;
 
   if (s.page === "thanks") {
+    const isSelf = s.raterGroup === "Self";
     app().innerHTML = `
       ${actionBar({ title: "TDEM Leadership Practice Inventory" })}
       <div class="center-screen">
         <div class="card" style="max-width: 500px; text-align: center; padding: 3rem 2.5rem;">
           <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--green-soft); border: 1px solid var(--green-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 1.6rem; color: var(--green);">✓</div>
-          <h2 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Thank you</h2>
-          <p style="font-size: 0.92rem; color: var(--fg-soft); line-height: 1.7; margin-bottom: 1.25rem;">
-            Your feedback has been submitted. Individual responses are confidential and will only appear as patterns across rater groups, never attributed to you personally.
-          </p>
-          <div class="info-box" style="text-align: left;">
-            <p>Your input genuinely matters. The most useful feedback, including yours, often comes from people who took the time to be specific and honest.</p>
-          </div>
+          ${isSelf ? `
+            <h2 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Assessment complete.</h2>
+            <p style="font-size: 0.92rem; color: var(--fg-soft); line-height: 1.7; margin-bottom: 1.25rem;">
+              Your self-assessment has been submitted. Your GKG Leadership Advisor will review your responses before your group session or Individual Feedback Conversation.
+            </p>
+            <div class="info-box" style="text-align: left;">
+              <div class="info-label">What comes next</div>
+              <p>When you advance to the Advanced Academy, you will complete the LPI: Multi-Rater, which builds directly on what you have started here. That process adds perspectives from the people you lead, work alongside, and report to.</p>
+            </div>
+          ` : `
+            <h2 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Thank you</h2>
+            <p style="font-size: 0.92rem; color: var(--fg-soft); line-height: 1.7; margin-bottom: 1.25rem;">
+              Your feedback has been submitted. Individual responses are confidential and will only appear as patterns across rater groups, never attributed to you personally.
+            </p>
+            <div class="info-box" style="text-align: left;">
+              <p>Your input genuinely matters. The most useful feedback, including yours, often comes from people who took the time to be specific and honest.</p>
+            </div>
+          `}
           ${s.isPreview ? `<div style="margin-top: 1.25rem;"><button class="btn btn-ghost" onclick="navigate('/')">← Back to home</button></div>` : ""}
         </div>
       </div>
@@ -1090,31 +1118,43 @@ function renderSurvey() {
 
   if (s.page === "terms") {
     const right = s.isPreview ? `<a onclick="navigate('/')">← Back</a>` : "";
+    const isSelf = s.raterGroup === "Self";
     app().innerHTML = `
       ${actionBar({ title: "TDEM Leadership Practice Inventory", right })}
       <div style="display: flex; align-items: center; justify-content: center; padding: 2rem 1.5rem;">
         <div class="card" style="max-width: 620px; width: 100%; padding: 2rem 2.25rem;">
-          <div class="section-label">Rater Survey</div>
-          <h2>Feedback for ${esc(s.participantName)}</h2>
+          <div class="section-label${isSelf ? " green" : ""}">${isSelf ? "LPI: Self-Assessment" : "LPI: Multi-Rater"}</div>
+          <h2>${isSelf ? "Your Self-Assessment" : `Feedback for ${esc(s.participantName)}`}</h2>
           <p style="font-size: 0.88rem; color: var(--fg-soft); margin-bottom: 1.5rem; margin-top: 0.35rem;">
             Please review the following before beginning.
           </p>
 
-          ${[
+          ${(isSelf ? [
+            ["Developmental purpose only", "Your results support your own growth. This is not connected to performance reviews or employment decisions."],
+            ["There are no right answers", "Rate each behavior based on your honest observation of your own practice. What you notice is more useful than what you aspire to."],
+            ["Time required", "Approximately 20-25 minutes. Please complete in one sitting if possible."],
+            ["Your results are private", "Your self-assessment is reviewed by your GKG Leadership Advisor before your group session or Individual Feedback Conversation. Results are not shared with your supervisor or colleagues."],
+            ["Intellectual property", "This instrument is proprietary to Golden Key Group and may not be reproduced without written permission."],
+          ] : [
             ["Developmental purpose only", "Results support the participant's growth. This is not connected to performance reviews or employment decisions."],
             ["Your responses are confidential", "Individual ratings are never shared. Results are reported as patterns across rater groups only."],
             ["Time required", "Approximately 20-25 minutes. Please complete in one sitting."],
             ["Analysis", "Your feedback is synthesized into patterns by your GKG Leadership Advisor before being shared."],
             ["Intellectual property", "This instrument is proprietary to Golden Key Group and may not be reproduced without written permission."],
-          ].map(([h, t], i, arr) => `
+          ]).map(([h, t], i, arr) => `
             <div style="display: flex; gap: 0.85rem; padding: 0.85rem 0; ${i < arr.length - 1 ? `border-bottom: 1px solid var(--border);` : ""}">
-              <div style="color: var(--primary); font-size: 1.1rem; margin-top: 0.1rem; flex-shrink: 0; font-weight: 700;">›</div>
+              <div style="color: ${isSelf ? "var(--green)" : "var(--primary)"}; font-size: 1.1rem; margin-top: 0.1rem; flex-shrink: 0; font-weight: 700;">›</div>
               <div>
                 <div style="font-size: 0.9rem; font-weight: 600; color: var(--fg); margin-bottom: 0.2rem;">${esc(h)}</div>
                 <div style="font-size: 0.85rem; color: var(--fg-soft); line-height: 1.6;">${esc(t)}</div>
               </div>
             </div>
           `).join("")}
+
+          <div class="info-box${isSelf ? "" : ""}" style="margin-top: 1.5rem;">
+            <div class="info-label">A note on the word leadership</div>
+            <p style="font-style: italic; font-family: 'Libre Baskerville', Georgia, serif;">Leadership, as we use the word here, is not a title or a position; it is a practice. It is the ongoing work of making decisions under uncertainty, enabling others to do their best work, and sustaining both yourself and your team through the demands of the mission. You do not have it or lack it. You do it, more or less effectively, depending on conditions, context, and the habits you have built over time.${isSelf ? " This assessment is about those habits: what you notice in your own practice, and where there may be room to grow." : ""}</p>
+          </div>
 
           <div onclick="surveyState.agreed = !surveyState.agreed; renderSurvey()" style="margin-top: 1.5rem; display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem 1.1rem; background: var(--primary-soft); border: 1px solid var(--primary-border); border-radius: 8px; cursor: pointer;">
             <input type="checkbox" ${s.agreed ? "checked" : ""} style="margin-top: 0.2rem; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--primary); pointer-events: none;" />
@@ -1123,6 +1163,7 @@ function renderSurvey() {
             </span>
           </div>
 
+          ${isSelf ? "" : `
           <div style="margin-top: 1.5rem;">
             <div class="label" style="margin-bottom: 0.6rem;">Your relationship to ${esc(s.participantName)}</div>
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;">
@@ -1134,9 +1175,10 @@ function renderSurvey() {
               `).join("")}
             </div>
           </div>
+          `}
 
-          <button class="btn btn-primary btn-full" ${s.agreed && s.raterGroup ? "" : "disabled"}
-            onclick="surveyState.page='survey'; renderSurvey()">Begin Survey →</button>
+          <button class="btn ${isSelf ? "btn-green" : "btn-primary"} btn-full" ${s.agreed && s.raterGroup ? "" : "disabled"}
+            onclick="surveyState.page='survey'; renderSurvey()">${isSelf ? "Begin Self-Assessment →" : "Begin Survey →"}</button>
         </div>
       </div>
     `;
@@ -1146,7 +1188,7 @@ function renderSurvey() {
   // Survey page
   const allRated = ITEMS.every(i => s.ratings[i.id] !== undefined);
   const progress = Math.round(Object.keys(s.ratings).length / ITEMS.length * 100);
-  const openValid = s.openQ.q1.length >= MIN_CHARS && s.openQ.q2.length >= MIN_CHARS;
+  const openValid = s.openQ.q1.length >= curMinChars() && s.openQ.q2.length >= curMinChars();
 
   app().innerHTML = `
     <div style="position: sticky; top: 0; z-index: 50;">
@@ -1181,6 +1223,7 @@ function renderSurvey() {
 function renderDomain() {
   const s = surveyState;
   const idx = s.domainIdx;
+  const isSelf = s.raterGroup === "Self";
   const items = ITEMS.filter(i => i.d === idx);
   const domainDone = items.every(i => s.ratings[i.id] !== undefined);
   const allRated = ITEMS.every(i => s.ratings[i.id] !== undefined);
@@ -1188,10 +1231,12 @@ function renderDomain() {
 
   return `
     <div class="card">
-      <div class="section-label">Domain ${idx + 1} of 5</div>
+      <div class="section-label${isSelf ? " green" : ""}">Domain ${idx + 1} of 5</div>
       <h3 style="margin-bottom: 0.6rem;">${esc(DOMAINS[idx])}</h3>
       <p style="font-size: 0.85rem; color: var(--fg-soft); margin-bottom: ${domainNote ? "0.75rem" : "1.5rem"}; line-height: 1.6;">
-        How frequently do you observe this behavior? Answer based on what you actually see, not what you think they intend or what they're capable of.
+        ${isSelf
+          ? "How frequently do you observe this in your own practice? Rate based on what you actually do, not what you aspire to or intend."
+          : "How frequently do you observe this behavior? Answer based on what you actually see, not what you think they intend or what they're capable of."}
       </p>
       ${domainNote ? `
         <div class="info-box" style="margin-bottom: 1.5rem;">
@@ -1202,8 +1247,9 @@ function renderDomain() {
         <div class="item-row">
           <div class="item-text">
             <span class="id">#${item.id}</span>
-            This person ${esc(item.text.charAt(0).toLowerCase() + item.text.slice(1))}
-            ${item.hint ? `<div style="font-size: 0.78rem; color: var(--fg-soft); margin-top: 0.35rem; line-height: 1.5; font-weight: 400;">${esc(item.hint)}</div>` : ""}
+            ${isSelf ? esc(item.saText) : `This person ${esc(item.text.charAt(0).toLowerCase() + item.text.slice(1))}`}
+            ${isSelf && item.saNote ? `<div style="font-size: 0.78rem; color: var(--fg-soft); margin-top: 0.35rem; line-height: 1.5; font-weight: 400; font-style: italic;">${esc(item.saNote)}</div>` : ""}
+            ${!isSelf && item.hint ? `<div style="font-size: 0.78rem; color: var(--fg-soft); margin-top: 0.35rem; line-height: 1.5; font-weight: 400;">${esc(item.hint)}</div>` : ""}
           </div>
           <div class="scale-row">
             ${SCALE.map((sc, si) => `
@@ -1217,9 +1263,9 @@ function renderDomain() {
         ${idx > 0 ? `<button class="btn btn-ghost" onclick="surveyState.domainIdx=${idx - 1}; renderSurvey()">← Previous</button>` : ""}
         <div style="flex: 1;"></div>
         ${idx < DOMAINS.length - 1
-          ? `<button class="btn btn-primary" ${domainDone ? "" : "disabled"} onclick="surveyState.domainIdx=${idx + 1}; renderSurvey()">Next Domain →</button>`
+          ? `<button class="btn ${isSelf ? "btn-green" : "btn-primary"}" ${domainDone ? "" : "disabled"} onclick="surveyState.domainIdx=${idx + 1}; renderSurvey()">Next Domain →</button>`
           : (allRated
-            ? `<button class="btn btn-primary" onclick="surveyState.domainIdx=-1; renderSurvey()">Open Questions →</button>`
+            ? `<button class="btn ${isSelf ? "btn-green" : "btn-primary"}" onclick="surveyState.domainIdx=-1; renderSurvey()">Open Questions →</button>`
             : `<div style="font-size: 0.82rem; color: var(--muted); align-self: center;">Rate all items to continue</div>`)}
       </div>
     </div>
@@ -1228,7 +1274,76 @@ function renderDomain() {
 
 function renderOpenQuestions() {
   const s = surveyState;
-  const openValid = s.openQ.q1.length >= MIN_CHARS && s.openQ.q2.length >= MIN_CHARS;
+  const isSelf = s.raterGroup === "Self";
+  const minChars = curMinChars();
+  const openValid = s.openQ.q1.length >= minChars && s.openQ.q2.length >= minChars;
+
+  if (isSelf) {
+    return `
+      <div class="card">
+        <div class="section-label amber">Reflection Questions</div>
+        <h3 style="margin-bottom: 0.6rem;">Tell me more</h3>
+
+        <div class="info-box" style="margin-bottom: 1.5rem;">
+          <div class="info-label">What makes reflection useful</div>
+          <p>The most useful responses describe a <strong>specific situation</strong>: what was happening, what you noticed about yourself, and what the impact was.</p>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <label style="display: block; font-size: 0.95rem; color: var(--fg); font-weight: 600; margin-bottom: 0.35rem; line-height: 1.5;">
+            Describe a situation where you were at your best as a leader. <span style="color: var(--red);">*</span>
+          </label>
+          <p style="font-size: 0.85rem; color: var(--fg-soft); margin-bottom: 0.75rem; line-height: 1.6;">
+            What was the situation? What did you do? What made it feel like your best work?
+          </p>
+          ${depthTextareaHTML("q1",
+            "I was at my best when...",
+            "During a multi-agency coordination call after the flooding last spring, I held space for a disagreement between two division chiefs without taking sides. I asked each person a clarifying question, summarized what I heard, and redirected to the shared goal. The conversation that had been going in circles for 20 minutes resolved in under 5.",
+            "Can you be more specific? What was the situation, and what exactly did you do?"
+          )}
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <label style="display: block; font-size: 0.95rem; color: var(--fg); font-weight: 600; margin-bottom: 0.35rem; line-height: 1.5;">
+            Where in your leadership practice do you feel least confident, or most inconsistent? <span style="color: var(--red);">*</span>
+          </label>
+          <p style="font-size: 0.85rem; color: var(--fg-soft); margin-bottom: 0.75rem; line-height: 1.6;">
+            Be honest. What do you notice yourself avoiding, second-guessing, or struggling with?
+          </p>
+          ${depthTextareaHTML("q2",
+            "I feel least confident when...",
+            "When things get hectic during an activation, I notice I tend to take tasks back from the team rather than letting them work through the problem.",
+            "Can you name a specific pattern or situation where this comes up?"
+          )}
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <label style="display: block; font-size: 0.95rem; color: var(--fg); font-weight: 600; margin-bottom: 0.35rem; line-height: 1.5;">
+            Are there organizational conditions or constraints that make it harder for you to lead effectively?
+          </label>
+          <p style="font-size: 0.85rem; color: var(--fg-soft); margin-bottom: 0.75rem; line-height: 1.6;">
+            Optional. Name anything that shapes the context your ratings should be understood in.
+          </p>
+          ${depthTextareaHTML("q3",
+            "Optional; leave blank if nothing comes to mind",
+            null,
+            "Can you describe the condition more specifically?"
+          )}
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; align-items: center;">
+          <button class="btn btn-ghost" onclick="surveyState.domainIdx=${DOMAINS.length - 1}; renderSurvey()">← Back to Ratings</button>
+          <div style="flex: 1;"></div>
+          <button class="btn btn-green" ${openValid && !surveyState.submitting ? "" : "disabled"} onclick="submitSurvey()">
+            ${surveyState.submitting ? "Submitting..." : !openValid ? "Add more detail to continue" : "Submit Self-Assessment"}
+          </button>
+        </div>
+        <div style="font-size: 0.7rem; color: var(--muted-light); text-align: center; margin-top: 0.85rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em;">
+          Your responses are confidential · Proprietary to Golden Key Group
+        </div>
+      </div>
+    `;
+  }
 
   return `
     <div class="card">
@@ -1298,8 +1413,9 @@ function renderOpenQuestions() {
 
 function depthTextareaHTML(qKey, placeholder, example, followUp) {
   const val = surveyState.openQ[qKey];
-  const tooShort = val.length > 0 && val.length < MIN_CHARS;
-  const good = val.length >= MIN_CHARS;
+  const minChars = curMinChars();
+  const tooShort = val.length > 0 && val.length < minChars;
+  const good = val.length >= minChars;
   return `
     ${example ? `
       <div class="dt-example">
@@ -1326,13 +1442,15 @@ const followupShown = {};
 const followupDismissed = {};
 
 function wireDepthTextareas() {
+  const isSelf = surveyState.raterGroup === "Self";
   $$(".textarea[data-qkey]").forEach(ta => {
     ta.addEventListener("input", () => {
       const qKey = ta.dataset.qkey;
       const val = ta.value;
       surveyState.openQ[qKey] = val;
-      const tooShort = val.length > 0 && val.length < MIN_CHARS;
-      const good = val.length >= MIN_CHARS;
+      const minChars = curMinChars();
+      const tooShort = val.length > 0 && val.length < minChars;
+      const good = val.length >= minChars;
 
       ta.classList.toggle("dt-strong", good);
       ta.classList.toggle("dt-short", tooShort);
@@ -1346,18 +1464,18 @@ function wireDepthTextareas() {
       $("#count-" + qKey).textContent = val.length + " chars";
 
       // Update submit button state
-      const openValid = surveyState.openQ.q1.length >= MIN_CHARS && surveyState.openQ.q2.length >= MIN_CHARS;
-      const submitBtn = $$(".btn.btn-primary").find(b => b.textContent.includes("Submit") || b.textContent.includes("more detail"));
+      const openValid = surveyState.openQ.q1.length >= minChars && surveyState.openQ.q2.length >= minChars;
+      const submitBtn = $$(isSelf ? ".btn.btn-green" : ".btn.btn-primary").find(b => b.textContent.includes("Submit") || b.textContent.includes("more detail"));
       if (submitBtn) {
         submitBtn.disabled = !openValid || surveyState.submitting;
-        submitBtn.textContent = !openValid ? "Add more detail to continue" : "Submit Feedback";
+        submitBtn.textContent = !openValid ? "Add more detail to continue" : (isSelf ? "Submit Self-Assessment" : "Submit Feedback");
       }
 
       // Follow-up scheduling
       clearTimeout(followupTimers[qKey]);
-      if (val.length > 20 && val.length < MIN_CHARS && !followupDismissed[qKey]) {
+      if (val.length > 20 && val.length < minChars && !followupDismissed[qKey]) {
         followupTimers[qKey] = setTimeout(() => showFollowup(qKey, ta.dataset.followup), 2500);
-      } else if (val.length >= MIN_CHARS) {
+      } else if (val.length >= minChars) {
         hideFollowup(qKey);
       }
     });
@@ -1602,6 +1720,9 @@ function surveyLink(pid, name, group) {
   const base = window.location.origin + window.location.pathname;
   return `${base}#/survey?pid=${pid}&name=${encodeURIComponent(name || "")}&rgroup=${encodeURIComponent(group)}`;
 }
+function selfAssessmentLink(pid, name) {
+  return surveyLink(pid, name, "Self");
+}
 
 function setTab(tab) {
   adminState.activeTab = tab;
@@ -1660,7 +1781,7 @@ function renderAdmin() {
             <div>
               <h2 style="font-size: 1.7rem;">${esc(selected.name)}</h2>
               <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap;">
-                ${groupCounts.filter(g => g.count > 0).map(g => `<span class="pill">${esc(g.group)}: ${g.count}</span>`).join("")}
+                ${groupCounts.filter(g => g.count > 0).map(g => `<span class="pill${g.group === "Self" ? " green" : ""}">${esc(g.group)}: ${g.count}</span>`).join("")}
                 ${a.nominations.status ? `<span class="pill ${a.nominations.status === "approved" ? "green" : "amber"}">Nominations: ${esc(a.nominations.status)}</span>` : ""}
               </div>
             </div>
@@ -1734,7 +1855,15 @@ function renderAdminTab() {
       ${a.nominations.selfEmail ? `
         <div style="padding: 0.85rem 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.75rem;">
           <div style="font-size: 0.7rem; color: var(--primary); font-family: 'JetBrains Mono', monospace; font-weight: 600; margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.1em;">Self-Assessment</div>
-          <div style="font-size: 0.88rem; color: var(--fg);">${esc(a.nominations.selfEmail)}</div>
+          <div style="font-size: 0.88rem; color: var(--fg); margin-bottom: 0.6rem;">${esc(a.nominations.selfEmail)}</div>
+          <div style="padding: 0.5rem 0.7rem; background: var(--card-solid); border: 1px solid var(--green-border); border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: var(--green); font-family: 'JetBrains Mono', monospace; font-weight: 600; margin-bottom: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;">
+              <span>Self-Assessment link</span>
+              <button onclick="copyToClipboard('${selfAssessmentLink(a.selectedPid, selected.name).replace(/'/g, "\\'")}', 'Self-Assessment link copied')"
+                style="background: none; border: none; color: var(--green); cursor: pointer; font-size: 0.7rem; font-weight: 600;">Copy</button>
+            </div>
+            <code style="display: block;">${esc(selfAssessmentLink(a.selectedPid, selected.name))}</code>
+          </div>
         </div>
       ` : ""}
 
@@ -1784,16 +1913,29 @@ function renderAdminTab() {
   }
 
   if (a.activeTab === "responses") {
+    const saLinkBox = `
+      <div class="info-box green" style="margin-bottom: 1.25rem;">
+        <div class="info-label">Self-Assessment link</div>
+        <p style="margin-bottom: 0.5rem;">Send this directly to ${esc(selected.name)}. It does not require nomination approval.</p>
+        <code>${esc(selfAssessmentLink(a.selectedPid, selected.name))}</code>
+        <button class="btn btn-ghost btn-small" style="margin-top: 0.5rem;"
+          onclick="copyToClipboard('${selfAssessmentLink(a.selectedPid, selected.name).replace(/'/g, "\\'")}', 'Self-Assessment link copied')">
+          Copy link
+        </button>
+      </div>
+    `;
+
     if (a.responses.length === 0) {
       return `
+        ${saLinkBox}
         <div style="text-align: center; padding: 2.5rem 1rem; color: var(--muted);">
           <div style="font-size: 0.92rem; margin-bottom: 0.6rem;">No responses yet.</div>
-          <div style="font-size: 0.82rem; color: var(--muted-light);">Approve nominations first, then send survey links to raters.</div>
+          <div style="font-size: 0.82rem; color: var(--muted-light);">Send the Self-Assessment link above, or approve nominations to release Multi-Rater survey links.</div>
         </div>
       `;
     }
 
-    let html = "";
+    let html = saLinkBox;
     DOMAINS.forEach((domain, dIdx) => {
       html += `<div style="margin-bottom: 1.75rem;"><div class="section-label">${esc(domain)}</div>`;
       ITEMS.filter(i => i.d === dIdx).forEach(item => {
@@ -1952,6 +2094,8 @@ function render() {
     viewSurvey(params.name || "Participant", params.pid || "unknown", params.rgroup || "", false);
   } else if (route === "/admin") {
     viewAdmin();
+  } else if (route === "/preview-self") {
+    viewSurvey("Alex Rivera (Demo)", "demo001", "Self", true);
   } else if (route === "/preview-survey") {
     viewSurvey("Alex Rivera (Demo)", "demo001", "", true);
   } else if (route === "/preview-nominate") {
