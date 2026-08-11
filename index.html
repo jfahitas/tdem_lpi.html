@@ -55,7 +55,6 @@
   }
   a { color: var(--primary); }
 
-  /* ===== Animations ===== */
   @keyframes grid-scroll {
     from { background-position: 0 0; }
     to { background-position: 40px 40px; }
@@ -73,7 +72,6 @@
     * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 
-  /* ===== Backdrop ===== */
   .grid-base, .grid-spotlight, .orb-layer {
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
   }
@@ -102,7 +100,6 @@
   .orb-3 { left: -15%; bottom: -25%; width: 50%; height: 50%; background: rgba(37, 99, 235, 0.15); }
   .orb-4 { left: 30%; top: 60%; width: 30%; height: 30%; background: rgba(236, 72, 153, 0.1); }
 
-  /* ===== Layout ===== */
   #app { position: relative; z-index: 10; min-height: 100vh; }
   .container { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
   .container-wide { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
@@ -111,7 +108,6 @@
     padding: 3rem 1.5rem; min-height: calc(100vh - 70px);
   }
 
-  /* ===== Action bar ===== */
   .action-bar {
     position: sticky; top: 0; z-index: 50;
     background: rgba(250, 248, 245, 0.85);
@@ -141,7 +137,6 @@
   }
   .action-bar .right a { cursor: pointer; color: var(--primary); font-weight: 500; text-decoration: none; }
 
-  /* ===== Cards ===== */
   .card {
     background: var(--card);
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -154,7 +149,6 @@
     background: var(--card-elev);
   }
 
-  /* ===== Buttons ===== */
   .btn {
     padding: 0.7rem 1.4rem; border-radius: 8px; border: none;
     cursor: pointer; font-size: 0.9rem; font-weight: 600;
@@ -183,7 +177,6 @@
   .btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .btn-full { width: 100%; }
 
-  /* ===== Form inputs ===== */
   .input, .textarea {
     width: 100%; padding: 0.65rem 0.9rem;
     border: 1.5px solid var(--border-strong);
@@ -201,7 +194,6 @@
     font-weight: 600; margin-bottom: 0.3rem;
   }
 
-  /* ===== Badges & pills ===== */
   .section-label {
     display: inline-block;
     font-family: 'JetBrains Mono', monospace;
@@ -228,13 +220,11 @@
   .pill.green { background: var(--green-soft); border-color: var(--green-border); color: var(--green); }
   .pill.amber { background: var(--orange-soft); border-color: var(--orange-border); color: var(--orange); }
 
-  /* ===== Headings ===== */
   h1, h2, h3 { font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; letter-spacing: -0.01em; }
   h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.1; }
   h2 { font-size: 1.6rem; line-height: 1.2; }
   h3 { font-size: 1.3rem; line-height: 1.25; }
 
-  /* ===== Hero card ===== */
   .hero-card {
     position: relative; padding: 3rem 2.5rem;
     text-align: center; overflow: hidden;
@@ -268,7 +258,6 @@
     max-width: 420px;
   }
 
-  /* ===== Helper boxes ===== */
   .info-box {
     padding: 1rem 1.25rem;
     background: var(--primary-soft);
@@ -296,7 +285,6 @@
   .info-box.green .info-label { color: var(--green); }
   .info-box p { font-size: 0.88rem; color: var(--fg); line-height: 1.65; }
 
-  /* ===== Survey-specific ===== */
   .domain-tabs {
     display: flex; gap: 0.4rem;
     margin-bottom: 1.25rem; flex-wrap: wrap;
@@ -351,7 +339,6 @@
     transition: width 0.4s ease;
   }
 
-  /* ===== Depth textarea (open questions) ===== */
   .dt-example {
     margin-bottom: 0.75rem; padding: 0.85rem 1.1rem;
     background: var(--primary-soft);
@@ -406,7 +393,6 @@
   .textarea.dt-strong { border-color: var(--green); border-width: 2px; }
   .textarea.dt-short { border-color: var(--orange); border-width: 2px; }
 
-  /* ===== Admin sidebar ===== */
   .admin-layout {
     display: flex; min-height: calc(100vh - 70px);
   }
@@ -439,7 +425,6 @@
     color: var(--primary); font-weight: 600;
   }
 
-  /* Admin tabs */
   .tab-row { display: flex; flex-wrap: wrap; gap: 0; }
   .tab-btn {
     padding: 0.7rem 1.1rem; border: none; cursor: pointer;
@@ -458,7 +443,6 @@
     border-radius: 0 12px 12px 12px;
   }
 
-  /* ===== Reports ===== */
   .report-header {
     border-radius: 10px; padding: 1.25rem 1.5rem;
     margin-bottom: 1.25rem; position: relative; overflow: hidden;
@@ -487,7 +471,6 @@
     font-size: 0.78rem; color: rgba(255,255,255,0.7); margin-top: 0.2rem;
   }
 
-  /* Toast */
   .toast {
     position: fixed; top: 5rem; left: 50%;
     transform: translateX(-50%); z-index: 100;
@@ -499,7 +482,6 @@
     animation: fade-in 0.2s ease-out;
   }
 
-  /* Code block */
   code {
     font-size: 0.72rem;
     background: var(--card-solid);
@@ -512,17 +494,121 @@
     color: var(--fg-soft);
   }
 
-  /* Mobile */
   @media (max-width: 720px) {
     .admin-layout { flex-direction: column; }
     .admin-sidebar { width: 100%; }
     .hero-card { padding: 2rem 1.5rem; }
   }
+
+  /* ===== Walkthrough presentation (per-participant, screen-share mode) ===== */
+  .walk-stage {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; flex-direction: column;
+  }
+  .walk-stage.sa { background: linear-gradient(135deg, #0f2e1c, #14532d); }
+  .walk-stage.mr { background: linear-gradient(135deg, #2e1a5c, #4c1d95); }
+  .walk-topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.75rem; flex-shrink: 0;
+  }
+  .walk-topbar .brand-mini {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    color: rgba(255,255,255,0.55); letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .walk-topbar .exit {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85); padding: 0.45rem 0.9rem; border-radius: 6px;
+    cursor: pointer; font-size: 0.78rem; font-weight: 600;
+  }
+  .walk-topbar .exit:hover { background: rgba(255,255,255,0.15); }
+  .walk-body {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding: 1rem 2rem; overflow-y: auto;
+  }
+  .walk-slide { max-width: 780px; width: 100%; color: white; }
+  .walk-eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+    color: rgba(255,255,255,0.55); letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 0.9rem;
+  }
+  .walk-slide h1 {
+    color: white; font-size: clamp(1.7rem, 4vw, 2.5rem); margin-bottom: 1rem; line-height: 1.15;
+  }
+  .walk-slide .walk-lede {
+    color: rgba(255,255,255,0.8); font-size: 1.02rem; line-height: 1.7; margin-bottom: 1.5rem; max-width: 640px;
+  }
+  .walk-pattern-row {
+    display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1.75rem 0;
+  }
+  .walk-pattern-card {
+    flex: 1; min-width: 220px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 1.25rem 1.4rem;
+  }
+  .walk-pattern-card .who {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    color: rgba(255,255,255,0.55); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem;
+  }
+  .walk-pattern-card .pattern-label {
+    font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 0.75rem;
+  }
+  .walk-scale-track {
+    height: 8px; border-radius: 999px; background: rgba(255,255,255,0.15); position: relative; overflow: hidden;
+  }
+  .walk-scale-track .dot {
+    position: absolute; top: -3px; width: 14px; height: 14px; border-radius: 50%;
+    background: white; box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+    transform: translateX(-50%);
+  }
+  .walk-scale-labels {
+    display: flex; justify-content: space-between; margin-top: 0.5rem;
+    font-size: 0.62rem; color: rgba(255,255,255,0.4); font-family: 'JetBrains Mono', monospace;
+  }
+  .walk-gap-flag {
+    margin-top: 1.25rem; padding: 0.85rem 1.1rem; border-radius: 8px;
+    background: rgba(251, 191, 36, 0.15); border: 1px solid rgba(251, 191, 36, 0.35);
+    color: #fde68a; font-size: 0.88rem; line-height: 1.6;
+  }
+  .walk-insufficient {
+    margin-top: 1.25rem; padding: 0.85rem 1.1rem; border-radius: 8px;
+    background: rgba(255,255,255,0.06); border: 1px dashed rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.55); font-size: 0.85rem; font-style: italic;
+  }
+  .walk-quote-block {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-left: 3px solid white; border-radius: 10px; padding: 1.4rem 1.6rem;
+    font-size: 1.05rem; line-height: 1.75; color: white; font-family: 'Libre Baskerville', Georgia, serif; font-style: italic;
+  }
+  .walk-prompt-list { margin-top: 1.5rem; }
+  .walk-prompt-list .item {
+    display: flex; gap: 0.75rem; padding: 0.6rem 0; color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.6;
+  }
+  .walk-prompt-list .item .mark { color: rgba(255,255,255,0.4); flex-shrink: 0; }
+  .walk-navbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 1.75rem; flex-shrink: 0;
+  }
+  .walk-dots { display: flex; gap: 0.4rem; }
+  .walk-dots .d {
+    width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer;
+  }
+  .walk-dots .d.active { background: white; }
+  .walk-nav-btn {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: white; padding: 0.6rem 1.3rem; border-radius: 8px; cursor: pointer;
+    font-size: 0.88rem; font-weight: 600;
+  }
+  .walk-nav-btn:hover:not(:disabled) { background: rgba(255,255,255,0.2); }
+  .walk-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .walk-empty-card {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 1.5rem 1.75rem; color: rgba(255,255,255,0.85);
+    font-size: 0.95rem; line-height: 1.7; margin-top: 1.5rem;
+  }
 </style>
 </head>
 <body>
 
-<!-- Animated backdrop -->
 <div class="orb-layer">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -535,17 +621,11 @@
 <div id="app"></div>
 
 <script>
-// ════════════════════════════════════════════════════════════════════════════
-// TDEM LPI · Single-file static app
-// ════════════════════════════════════════════════════════════════════════════
-
-// ── Mouse spotlight ─────────────────────────────────────────────────────────
 document.addEventListener("mousemove", (e) => {
   document.documentElement.style.setProperty("--mx", e.clientX + "px");
   document.documentElement.style.setProperty("--my", e.clientY + "px");
 });
 
-// ── Constants ───────────────────────────────────────────────────────────────
 const SCALE = ["Never", "Rarely", "Sometimes", "Often", "Consistently"];
 const DOMAINS = [
   "Decision-Making Under Pressure",
@@ -584,18 +664,13 @@ const ITEMS = [
   { id: 20, d: 4, text: "Creates space for the team to process and recover after difficult work, not just move immediately to the next thing.", saText: "I create space for my team to process and recover after difficult work, not just move immediately to the next thing." },
 ];
 const RATER_GROUPS = ["Self", "Supervisor", "Peer", "Direct Report", "External Partner"];
-const ADMIN_CODE = "GKG2026";  // <-- change this to whatever you want
-const MIN_CHARS = 80;   // Multi-rater open questions
-const SELF_MIN_CHARS = 60;  // Self-assessment open questions
+const ADMIN_CODE = "GKG2026";
+const MIN_CHARS = 80;
+const SELF_MIN_CHARS = 60;
 function curMinChars() { return surveyState.raterGroup === "Self" ? SELF_MIN_CHARS : MIN_CHARS; }
 
-// ── Supabase config ─────────────────────────────────────────────────────────
 const SUPABASE_URL = "https://tadkzdvbqbwqlcgbcrij.supabase.co";
 const SUPABASE_KEY = "sb_publishable_NTkLcodV_TJS27Zx69PUQw_GCXSuJCN";
-
-// ── Database (Supabase via REST API) ────────────────────────────────────────
-// All reads/writes go through Supabase. Each function returns a Promise.
-// Errors are surfaced via console + a toast so the user knows something went wrong.
 
 async function sbFetch(path, options = {}) {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
@@ -620,10 +695,8 @@ async function sbFetch(path, options = {}) {
 }
 
 const DB = {
-  // PARTICIPANTS
   async listParticipants() {
     const rows = await sbFetch("participants?select=*&order=created_at.desc");
-    // Convert array to map keyed by id (matches the old localStorage shape)
     const out = {};
     (rows || []).forEach(r => {
       out[r.id] = { id: r.id, name: r.name, updatedAt: r.created_at };
@@ -637,7 +710,6 @@ const DB = {
     });
   },
   async upsertParticipant(pid, name) {
-    // Used by survey submission to ensure participant exists
     await sbFetch("participants?on_conflict=id", {
       method: "POST",
       headers: { "Prefer": "resolution=merge-duplicates,return=representation" },
@@ -645,7 +717,6 @@ const DB = {
     });
   },
 
-  // NOMINATIONS
   async getNominations(pid) {
     const rows = await sbFetch(`nominations?participant_id=eq.${encodeURIComponent(pid)}&select=*`);
     if (!rows || rows.length === 0) return {};
@@ -658,7 +729,6 @@ const DB = {
     };
   },
   async saveNominations(pid, dataObj) {
-    // Upsert
     const payload = {
       participant_id: pid,
       data: {
@@ -683,7 +753,6 @@ const DB = {
     });
   },
 
-  // RESPONSES
   async getResponses(pid) {
     const rows = await sbFetch(`responses?participant_id=eq.${encodeURIComponent(pid)}&select=*&order=submitted_at.asc`);
     return (rows || []).map(r => ({
@@ -708,7 +777,6 @@ const DB = {
     });
   },
 
-  // BACKUP/RESTORE
   async exportAll() {
     const [participants, nominations, responses] = await Promise.all([
       sbFetch("participants?select=*"),
@@ -724,7 +792,6 @@ const DB = {
   },
 };
 
-// ── Utils ───────────────────────────────────────────────────────────────────
 const uid = () => Math.random().toString(36).slice(2, 10);
 const avg = (arr) => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : null;
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -754,7 +821,6 @@ function copyToClipboard(text, msg) {
   navigator.clipboard.writeText(text).then(() => showToast(msg || "Copied"));
 }
 
-// ── Hash routing ────────────────────────────────────────────────────────────
 function parseHash() {
   const h = window.location.hash.slice(1);
   if (!h) return { route: "/", params: {} };
@@ -765,8 +831,14 @@ function parseHash() {
 }
 function navigate(hash) { window.location.hash = hash; }
 window.addEventListener("hashchange", render);
+document.addEventListener("keydown", (e) => {
+  const h = window.location.hash;
+  if (h !== "#/walkthrough-self" && h !== "#/walkthrough-multi") return;
+  if (e.key === "ArrowRight") walkNav(1);
+  else if (e.key === "ArrowLeft") walkNav(-1);
+  else if (e.key === "Escape") exitWalkthrough();
+});
 
-// ── Action bar ──────────────────────────────────────────────────────────────
 function actionBar({ title, sub, right }) {
   return `
     <div class="action-bar">
@@ -933,7 +1005,6 @@ function renderNominate() {
     return;
   }
 
-  // Form
   const total = Object.values(nomState.noms).flat().filter(r => r.name.trim()).length;
   const canSubmit = total >= 3 && nomState.selfEmail.trim();
   app().innerHTML = `
@@ -1043,7 +1114,6 @@ async function submitNominations() {
   };
 
   try {
-    // Make sure the participant row exists (nominations FK references it)
     await DB.upsertParticipant(nomState.participantId, nomState.participantName);
     await DB.saveNominations(nomState.participantId, data);
     nomState.page = "submitted";
@@ -1185,7 +1255,6 @@ function renderSurvey() {
     return;
   }
 
-  // Survey page
   const allRated = ITEMS.every(i => s.ratings[i.id] !== undefined);
   const progress = Math.round(Object.keys(s.ratings).length / ITEMS.length * 100);
   const openValid = s.openQ.q1.length >= curMinChars() && s.openQ.q2.length >= curMinChars();
@@ -1216,7 +1285,6 @@ function renderSurvey() {
     </div>
   `;
 
-  // Wire up depth textareas
   if (s.domainIdx === -1) wireDepthTextareas();
 }
 
@@ -1463,7 +1531,6 @@ function wireDepthTextareas() {
 
       $("#count-" + qKey).textContent = val.length + " chars";
 
-      // Update submit button state
       const openValid = surveyState.openQ.q1.length >= minChars && surveyState.openQ.q2.length >= minChars;
       const submitBtn = $$(isSelf ? ".btn.btn-green" : ".btn.btn-primary").find(b => b.textContent.includes("Submit") || b.textContent.includes("more detail"));
       if (submitBtn) {
@@ -1471,7 +1538,6 @@ function wireDepthTextareas() {
         submitBtn.textContent = !openValid ? "Add more detail to continue" : (isSelf ? "Submit Self-Assessment" : "Submit Feedback");
       }
 
-      // Follow-up scheduling
       clearTimeout(followupTimers[qKey]);
       if (val.length > 20 && val.length < minChars && !followupDismissed[qKey]) {
         followupTimers[qKey] = setTimeout(() => showFollowup(qKey, ta.dataset.followup), 2500);
@@ -1512,7 +1578,7 @@ function dismissFollowup(qKey) {
 async function submitSurvey() {
   if (surveyState.submitting) return;
   surveyState.submitting = true;
-  renderSurvey(); // re-render to show "Submitting..."
+  renderSurvey();
 
   const submission = {
     id: uid(),
@@ -1525,7 +1591,6 @@ async function submitSurvey() {
   };
 
   try {
-    // Ensure participant exists (FK constraint)
     await DB.upsertParticipant(surveyState.participantId, surveyState.participantName);
     await DB.addResponse(submission);
     surveyState.page = "thanks";
@@ -1572,7 +1637,7 @@ async function selectParticipant(pid) {
   adminState.facilPrep = "";
   adminState.responses = [];
   adminState.nominations = {};
-  renderAdmin(); // render immediately so the user sees the switch
+  renderAdmin();
 
   try {
     const [responses, nominations] = await Promise.all([
@@ -1588,7 +1653,6 @@ async function selectParticipant(pid) {
 }
 
 async function refreshSelected() {
-  // Reload current participant's data (used by Refresh button)
   if (!adminState.selectedPid) return;
   await selectParticipant(adminState.selectedPid);
   showToast("Refreshed");
@@ -1648,7 +1712,7 @@ function buildSummary() {
       if (gr.length) {
         const vals = gr.map(r => r.ratings[item.id]).filter(v => v !== undefined);
         const a = avg(vals);
-        s += `  ${group} (n=${gr.length}): ${a !== null ? SCALE[Math.round(a)] + ` (avg ${a.toFixed(1)})` : "No response"}\n`;
+        s += `  ${group} (n=${gr.length}): ${a !== null ? SCALE[Math.round(a)] : "No response"}\n`;
       }
     });
     s += "\n";
@@ -1664,7 +1728,7 @@ function buildSummary() {
   return s;
 }
 
-const REPORT_PROMPT = (summary) => `You are a leadership development consultant at Golden Key Group preparing a feedback report for a TDEM supervisor. Developmental only. Tone: warm, direct, curious. Paragraphs not bullet lists.
+const REPORT_PROMPT = (summary) => `You are a GKG Leadership Advisor at Golden Key Group preparing a feedback report for a TDEM supervisor. Developmental only. Tone: warm, direct, curious. Paragraphs not bullet lists. Do not use em dashes; use commas, semicolons, or colons instead. Refer to the review process as the "Individual Feedback Conversation" and never as a "debrief." Refer to the instrument as the "LPI," never as a "360." Report only qualitative frequency labels (Never, Rarely, Sometimes, Often, Consistently); never state or imply a numeric score or average.
 
 Data:
 ${summary}
@@ -1697,7 +1761,7 @@ One curious question specific to this person's data. Not generic.
 
 Under 600 words.`;
 
-const PREP_PROMPT = (summary) => `Brief a skilled coach in 200 words max about a TDEM supervisor's 60-min debrief. (1) 1-2 most important patterns, (2) one thing to handle with care, (3) whether conditions need time, (4) suggested opening question. Colleague-to-colleague tone.
+const PREP_PROMPT = (summary) => `Brief a skilled coach in 200 words max about a TDEM supervisor's 60-minute Individual Feedback Conversation. Do not use em dashes; use commas, semicolons, or colons instead. Report only qualitative frequency labels; never state or imply a numeric score or average. Cover: (1) 1-2 most important patterns, (2) one thing to handle with care, (3) whether conditions need time, (4) suggested opening question. Colleague-to-colleague tone.
 
 Data:
 ${summary}`;
@@ -1710,6 +1774,244 @@ function copyPrepPrompt() {
 }
 function copyRawSummary() {
   copyToClipboard(buildSummary(), "Raw data summary copied");
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// WALKTHROUGH ENGINE (per-participant, screen-share presentation)
+// ════════════════════════════════════════════════════════════════════════════
+const OTHERS_MIN_N = 3; // anonymity floor: don't show an "Others" pattern below this
+
+function domainPatternFor(responses, domainIdx, raterFilterFn) {
+  // Returns { label, idx, n } or null if no data
+  const items = ITEMS.filter(it => it.d === domainIdx);
+  const gr = responses.filter(raterFilterFn);
+  const vals = [];
+  gr.forEach(r => items.forEach(it => {
+    if (r.ratings[it.id] !== undefined) vals.push(r.ratings[it.id]);
+  }));
+  if (vals.length === 0) return null;
+  const a = avg(vals);
+  return { label: SCALE[Math.round(a)], idx: Math.round(a), n: gr.length };
+}
+
+function walkSelfPattern(domainIdx) {
+  return domainPatternFor(adminState.responses, domainIdx, r => r.raterGroup === "Self");
+}
+function walkOthersPattern(domainIdx) {
+  const nonSelf = adminState.responses.filter(r => r.raterGroup !== "Self");
+  const nonSelfCount = new Set(nonSelf.map(r => r.id)).size;
+  if (nonSelfCount < OTHERS_MIN_N) return { insufficient: true, n: nonSelfCount };
+  return domainPatternFor(adminState.responses, domainIdx, r => r.raterGroup !== "Self");
+}
+
+function scalePositionPct(idx) {
+  return (idx / (SCALE.length - 1)) * 100;
+}
+
+function parseReportIntoSlides(reportText) {
+  if (!reportText || !reportText.trim()) return [];
+  // Split on markdown-bold section headers like **SECTION 1: TITLE** or **ONE QUESTION TO SIT WITH**
+  const parts = reportText.split(/\*\*([^*]+)\*\*/g).map(s => s.trim()).filter(Boolean);
+  const slides = [];
+  for (let i = 0; i < parts.length; i++) {
+    // Headers are ALL CAPS-ish and short; bodies are longer prose. Pair header -> next chunk.
+    const looksLikeHeader = parts[i] === parts[i].toUpperCase() && parts[i].length < 80;
+    if (looksLikeHeader && parts[i + 1]) {
+      slides.push({ title: parts[i], body: parts[i + 1] });
+      i++;
+    }
+  }
+  return slides;
+}
+
+const walkState = { mode: null, idx: 0, slides: [] };
+
+function buildSelfWalkSlides() {
+  const p = adminState.participants[adminState.selectedPid];
+  const slides = [];
+  slides.push({ type: "title", title: `${p?.name}'s Self-Assessment Walkthrough`, sub: "LPI: Self-Assessment · For your Individual Feedback Conversation" });
+  DOMAINS.forEach((d, i) => {
+    const pat = walkSelfPattern(i);
+    slides.push({ type: "self-domain", domain: d, pattern: pat });
+  });
+  const r = adminState.responses.find(r => r.raterGroup === "Self");
+  if (r?.openQ?.q1) slides.push({ type: "quote", label: "Where you were at your best", body: r.openQ.q1 });
+  if (r?.openQ?.q2) slides.push({ type: "quote", label: "Where you feel least confident", body: r.openQ.q2 });
+  if (r?.openQ?.q3) slides.push({ type: "quote", label: "Conditions you named", body: r.openQ.q3 });
+  slides.push({ type: "closing", prompts: [
+    "What resonates with you as you look back over this?",
+    "What surprised you, if anything?",
+    "What's one thing you want to try differently, and by when?",
+  ] });
+  return slides;
+}
+
+function buildMultiWalkSlides() {
+  const p = adminState.participants[adminState.selectedPid];
+  const slides = [];
+  slides.push({ type: "title", title: `${p?.name}'s Multi-Rater Walkthrough`, sub: "LPI: Multi-Rater · For your Individual Feedback Conversation" });
+  DOMAINS.forEach((d, i) => {
+    const self = walkSelfPattern(i);
+    const others = walkOthersPattern(i);
+    let gapFlag = null;
+    if (self && others && !others.insufficient && Math.abs(self.idx - others.idx) >= 2) {
+      gapFlag = "Notable gap between self and rater view; worth exploring together.";
+    }
+    slides.push({ type: "multi-domain", domain: d, self, others, gapFlag });
+  });
+  const reportSlides = parseReportIntoSlides(adminState.report);
+  if (reportSlides.length === 0) {
+    slides.push({ type: "no-report" });
+  } else {
+    reportSlides.forEach(rs => slides.push({ type: "report-section", title: rs.title, body: rs.body }));
+  }
+  slides.push({ type: "closing", prompts: [
+    "Where do you see yourself the same way your raters do?",
+    "Which gap are you most curious about, not defensive about?",
+    "What's one thing you want to try differently, and by when?",
+  ] });
+  return slides;
+}
+
+function startWalkthrough(mode) {
+  walkState.mode = mode;
+  walkState.idx = 0;
+  walkState.slides = mode === "self" ? buildSelfWalkSlides() : buildMultiWalkSlides();
+  navigate(mode === "self" ? "/walkthrough-self" : "/walkthrough-multi");
+}
+
+function walkNav(delta) {
+  const next = walkState.idx + delta;
+  if (next < 0 || next >= walkState.slides.length) return;
+  walkState.idx = next;
+  renderWalkthrough();
+}
+function walkGoTo(i) {
+  walkState.idx = i;
+  renderWalkthrough();
+}
+function exitWalkthrough() {
+  navigate("/admin");
+}
+
+function renderSlideBody(slide) {
+  if (slide.type === "title") {
+    return `
+      <div class="walk-slide">
+        <div class="walk-eyebrow">Golden Key Group · Confidential</div>
+        <h1>${esc(slide.title)}</h1>
+        <p class="walk-lede">${esc(slide.sub)}</p>
+      </div>
+    `;
+  }
+  if (slide.type === "self-domain") {
+    const pat = slide.pattern;
+    return `
+      <div class="walk-slide">
+        <div class="walk-eyebrow">Domain</div>
+        <h1>${esc(slide.domain)}</h1>
+        ${pat ? `
+          <div class="walk-pattern-card" style="max-width: 420px;">
+            <div class="who">Self</div>
+            <div class="pattern-label">${esc(pat.label)}</div>
+            <div class="walk-scale-track"><div class="dot" style="left: ${scalePositionPct(pat.idx)}%;"></div></div>
+            <div class="walk-scale-labels">${SCALE.map(s => `<span>${esc(s)}</span>`).join("")}</div>
+          </div>
+        ` : `<div class="walk-insufficient">No self-assessment data recorded for this domain yet.</div>`}
+      </div>
+    `;
+  }
+  if (slide.type === "multi-domain") {
+    const { self, others, gapFlag } = slide;
+    return `
+      <div class="walk-slide">
+        <div class="walk-eyebrow">Domain</div>
+        <h1>${esc(slide.domain)}</h1>
+        <div class="walk-pattern-row">
+          <div class="walk-pattern-card">
+            <div class="who">Self</div>
+            ${self ? `
+              <div class="pattern-label">${esc(self.label)}</div>
+              <div class="walk-scale-track"><div class="dot" style="left: ${scalePositionPct(self.idx)}%;"></div></div>
+              <div class="walk-scale-labels">${SCALE.map(s => `<span>${esc(s)}</span>`).join("")}</div>
+            ` : `<div class="walk-insufficient">No self rating yet.</div>`}
+          </div>
+          <div class="walk-pattern-card">
+            <div class="who">Others</div>
+            ${others && !others.insufficient ? `
+              <div class="pattern-label">${esc(others.label)}</div>
+              <div class="walk-scale-track"><div class="dot" style="left: ${scalePositionPct(others.idx)}%;"></div></div>
+              <div class="walk-scale-labels">${SCALE.map(s => `<span>${esc(s)}</span>`).join("")}</div>
+            ` : `<div class="walk-insufficient">Not enough rater responses yet to show a pattern (need at least ${OTHERS_MIN_N}).</div>`}
+          </div>
+        </div>
+        ${gapFlag ? `<div class="walk-gap-flag">${esc(gapFlag)}</div>` : ""}
+      </div>
+    `;
+  }
+  if (slide.type === "quote") {
+    return `
+      <div class="walk-slide">
+        <div class="walk-eyebrow">${esc(slide.label)}</div>
+        <div class="walk-quote-block">"${esc(slide.body)}"</div>
+      </div>
+    `;
+  }
+  if (slide.type === "report-section") {
+    return `
+      <div class="walk-slide">
+        <div class="walk-eyebrow">From the Feedback Report</div>
+        <h1 style="font-size: 1.5rem;">${esc(slide.title)}</h1>
+        <p class="walk-lede" style="max-width: 720px;">${esc(slide.body)}</p>
+      </div>
+    `;
+  }
+  if (slide.type === "no-report") {
+    return `
+      <div class="walk-slide">
+        <div class="walk-eyebrow">Feedback Report</div>
+        <h1 style="font-size: 1.6rem;">No report generated yet</h1>
+        <div class="walk-empty-card">
+          Generate the AI feedback report first from the <strong>Report</strong> tab, paste it back in, then restart this walkthrough. The written themes here come from that report, since summarizing multiple raters' comments safely takes that synthesis step.
+        </div>
+      </div>
+    `;
+  }
+  if (slide.type === "closing") {
+    return `
+      <div class="walk-slide">
+        <div class="walk-eyebrow">Wrap-up</div>
+        <h1>Questions to sit with together</h1>
+        <div class="walk-prompt-list">
+          ${slide.prompts.map(p => `<div class="item"><span class="mark">›</span>${esc(p)}</div>`).join("")}
+        </div>
+      </div>
+    `;
+  }
+  return "";
+}
+
+function renderWalkthrough() {
+  const themeClass = walkState.mode === "self" ? "sa" : "mr";
+  const slide = walkState.slides[walkState.idx];
+  app().innerHTML = `
+    <div class="walk-stage ${themeClass}">
+      <div class="walk-topbar">
+        <span class="brand-mini">TDEM LPI · Golden Key Group</span>
+        <button class="exit" onclick="exitWalkthrough()">✕ Exit to Admin</button>
+      </div>
+      <div class="walk-body">
+        ${renderSlideBody(slide)}
+      </div>
+      <div class="walk-navbar">
+        <button class="walk-nav-btn" onclick="walkNav(-1)" ${walkState.idx === 0 ? "disabled" : ""}>← Previous</button>
+        <div class="walk-dots">
+          ${walkState.slides.map((_, i) => `<div class="d ${i === walkState.idx ? "active" : ""}" onclick="walkGoTo(${i})"></div>`).join("")}
+        </div>
+        <button class="walk-nav-btn" onclick="walkNav(1)" ${walkState.idx === walkState.slides.length - 1 ? "disabled" : ""}>Next →</button>
+      </div>
+    </div>
+  `;
 }
 
 function nominateLink(pid, name) {
@@ -1743,7 +2045,6 @@ function renderAdmin() {
       right: `<a onclick="navigate('/')">← Exit</a>`,
     })}
     <div class="admin-layout">
-      <!-- Sidebar -->
       <div class="admin-sidebar">
         <div class="admin-sidebar-label">Participants</div>
         <div style="flex: 1; overflow-y: auto;">
@@ -1769,7 +2070,6 @@ function renderAdmin() {
         </div>
       </div>
 
-      <!-- Main pane -->
       <div class="admin-main">
         ${!a.selectedPid ? `
           <div style="text-align: center; padding: 5rem 0; color: var(--muted);">
@@ -1794,6 +2094,7 @@ function renderAdmin() {
               { key: "responses", label: "Responses" },
               { key: "report", label: "Report" },
               { key: "facilitator", label: "Facilitator Brief" },
+              { key: "walkthrough", label: "Walkthrough" },
             ].map((t, i, arr) => `
               <button class="tab-btn ${a.activeTab === t.key ? "active" : ""}"
                 onclick="setTab('${t.key}')"
@@ -1811,7 +2112,6 @@ function renderAdmin() {
     </div>
   `;
 
-  // Wire up edit-on-input for report/facilPrep textareas (so typing persists in state)
   const reportTa = $("#report-textarea");
   if (reportTa) reportTa.addEventListener("input", e => { adminState.report = e.target.value; });
   const prepTa = $("#prep-textarea");
@@ -1956,7 +2256,6 @@ function renderAdminTab() {
           html += `<div style="padding: 0.3rem 0.65rem; border-radius: 6px; background: ${bg}; border: 1px solid ${bd}; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace;">
             <span style="color: var(--muted);">${esc(group)}: </span>
             <strong style="color: ${fc};">${esc(SCALE[Math.round(av)])}</strong>
-            <span style="color: var(--muted-light);"> (${av.toFixed(1)})</span>
           </div>`;
         });
         html += "</div></div>";
@@ -2036,7 +2335,7 @@ function renderAdminTab() {
     return `
       <div class="report-header facil">
         <div class="eyebrow">Facilitator Only · GKG Confidential</div>
-        <div class="name">${esc(selected.name)} · Feedback Conversation Prep</div>
+        <div class="name">${esc(selected.name)} · Individual Feedback Conversation Prep</div>
         <div class="meta">60 minutes · 90 if participant requests</div>
       </div>
 
@@ -2079,6 +2378,38 @@ function renderAdminTab() {
     `;
   }
 
+  if (a.activeTab === "walkthrough") {
+    const hasSelf = a.responses.some(r => r.raterGroup === "Self");
+    const nonSelfCount = a.responses.filter(r => r.raterGroup !== "Self").length;
+    const hasEnoughRaters = nonSelfCount >= OTHERS_MIN_N;
+    const hasReport = !!(a.report && a.report.trim());
+
+    return `
+      <div class="info-box" style="margin-bottom: 1.25rem;">
+        <div class="info-label">Screen-share walkthrough</div>
+        <p>Full-screen, presentation-style walkthroughs built from ${esc(selected.name)}'s actual results. Open one, share your screen, and step through it live during the Individual Feedback Conversation.</p>
+      </div>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <div class="card" style="flex: 1; min-width: 260px;">
+          <div class="section-label green">Self-Assessment</div>
+          <p style="font-size: 0.85rem; color: var(--fg-soft); margin-bottom: 1rem; line-height: 1.6;">Domain-by-domain self-rating patterns, plus ${esc(selected.name)}'s own written reflections, shown in their own words.</p>
+          <button class="btn btn-green btn-full" ${hasSelf ? "" : "disabled"} onclick="startWalkthrough('self')">
+            ${hasSelf ? "Start Self-Assessment Walkthrough →" : "No self-assessment data yet"}
+          </button>
+        </div>
+        <div class="card" style="flex: 1; min-width: 260px;">
+          <div class="section-label">Multi-Rater</div>
+          <p style="font-size: 0.85rem; color: var(--fg-soft); margin-bottom: 1rem; line-height: 1.6;">Self-vs-Others pattern per domain, plus the written themes from the Report tab.</p>
+          <button class="btn btn-primary btn-full" ${hasEnoughRaters ? "" : "disabled"} onclick="startWalkthrough('multi')">
+            ${hasEnoughRaters ? "Start Multi-Rater Walkthrough →" : `Need at least ${OTHERS_MIN_N} rater responses`}
+          </button>
+          ${hasEnoughRaters && !hasReport ? `<div style="font-size: 0.78rem; color: var(--muted); margin-top: 0.6rem; line-height: 1.5;">The written-theme slides will say "no report generated yet" until you generate one from the Report tab.</div>` : ""}
+        </div>
+      </div>
+    `;
+  }
+
   return "";
 }
 
@@ -2094,6 +2425,12 @@ function render() {
     viewSurvey(params.name || "Participant", params.pid || "unknown", params.rgroup || "", false);
   } else if (route === "/admin") {
     viewAdmin();
+  } else if (route === "/walkthrough-self" || route === "/walkthrough-multi") {
+    if (!adminState.selectedPid || !walkState.slides.length) {
+      navigate("/admin");
+    } else {
+      renderWalkthrough();
+    }
   } else if (route === "/preview-self") {
     viewSurvey("Alex Rivera (Demo)", "demo001", "Self", true);
   } else if (route === "/preview-survey") {
